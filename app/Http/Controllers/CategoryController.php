@@ -14,9 +14,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view('master');
+        return view('admin.category.index');
     }
-
     /**
      * Show the form for creating a new resource.
      *
