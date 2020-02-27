@@ -39,5 +39,6 @@
 </div>
 <!-- ./wrapper -->
 @include('admin.components.js')
+@yield('js')
 </body>
 </html>
