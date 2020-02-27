@@ -32,3 +32,5 @@
 <script src="{{URL::asset('admin/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{URL::asset('admin/dist/js/demo.js')}}"></script>
+<script src="{{URL::asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{URL::asset('plugins/datatables/jquery.dataTables.js')}}"></script>
