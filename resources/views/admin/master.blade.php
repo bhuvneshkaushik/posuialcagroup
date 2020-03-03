@@ -1,44 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  @yield('title')
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  @include('admin.components.css')  
-</head>
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<html lang="en">
 
-  <!-- Navbar -->
-  @include('admin.layouts.navbar')
-  <!-- /.navbar -->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        @yield('title')
+        <meta content="Admin Dashboard" name="description" />
+        <meta content="Themesbrand" name="author" />
+        </head>
+        @include('admin.components.css')
+    <body>
 
-  <!-- Main Sidebar Container -->
-  @include('admin.layouts.aside')
+        <!-- Navigation Bar-->
+        @include('admin.components.navbar')
+        <!-- End Navigation Bar-->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    @yield('content-header')
-    <!-- /.content-header -->
+        <!-- page wrapper start -->
+        <div class="wrapper">
+            @yield('title-box')
+            <!-- page-title-box -->
 
-    <!-- Main content -->
-    @yield('content')
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  @include('admin.layouts.footer')
+            <div class="page-content-wrapper">
+                @yield('content')
+                <!-- end container-fluid -->
+            </div>
+            <!-- end page content-->
 
-  <!-- Control Sidebar -->
-  {{-- <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside> --}}
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-@include('admin.components.js')
-@yield('js')
-</body>
+        </div>
+        <!-- page wrapper end -->
+
+        <!-- Footer -->
+        <footer class="footer">
+            @include('admin.components.footer')
+        </footer>
+        <!-- End Footer -->
+
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/waves.min.js"></script>
+
+        <script src="../plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- Peity JS -->
+        <script src="../plugins/peity/jquery.peity.min.js"></script>
+
+        <script src="../plugins/morris/morris.min.js"></script>
+        <script src="../plugins/raphael/raphael-min.js"></script>
+
+        <script src="assets/pages/dashboard.js"></script>        
+
+        <!-- App js -->
+        <script src="assets/js/app.js"></script>
+
+    </body>
+
 </html>
