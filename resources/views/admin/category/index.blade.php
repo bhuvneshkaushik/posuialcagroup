@@ -1,601 +1,524 @@
 @extends('admin.master')
 
 @section('title')
-    <title>Category Page</title>
+    <title>Category</title>
 @endsection
 
-@section('title-box')
-<div class="page-title-box">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="state-information d-none d-sm-block">
-                                <div class="state-graph">
-                                    <div id="header-chart-1"></div>
-                                    <div class="info">Balance $ 2,317</div>
-                                </div>
-                                <div class="state-graph">
-                                    <div id="header-chart-2"></div>
-                                    <div class="info">Item Sold 1230</div>
-                                </div>
-                            </div>
-                            
-                            <h4 class="page-title">Dashboard</h4>
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">Welcome to ALCAPOS</li>
-                            </ol>
+@section('content-header')
+<section class="content-header">
+    <h1>
+      Dashboard
+      <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Dashboard</li>
+    </ol>
+  </section>
 
-                        </div>
-                    </div>
-                </div>
-                <!-- end container-fluid -->
-            </div>
-@endsection
+  @endsection
 
 @section('content')
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-xl-3 col-md-6">
-          <div class="card bg-danger mini-stat position-relative">
-              <div class="card-body">
-                  <div class="mini-stat-desc">
-                      <h6 class="text-uppercase verti-label text-white-50">Orders</h6>
-                      <div class="text-white">
-                          <h6 class="text-uppercase mt-0 text-white-50">Orders</h6>
-                          <h3 class="mb-3 mt-0">1,587</h3>
-                          <div class="">
-                              <span class="badge badge-light text-info"> +11% </span> <span class="ml-2">From previous period</span>
-                          </div>
-                      </div>
-                      <div class="mini-stat-icon">
-                          <i class="mdi mdi-cube-outline display-2"></i>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-xl-3 col-md-6">
-          <div class="card bg-danger mini-stat position-relative">
-              <div class="card-body">
-                  <div class="mini-stat-desc">
-                      <h6 class="text-uppercase verti-label text-white-50">Revenue</h6>
-                      <div class="text-white">
-                          <h6 class="text-uppercase mt-0 text-white-50">Revenue</h6>
-                          <h3 class="mb-3 mt-0">$46,785</h3>
-                          <div class="">
-                              <span class="badge badge-light text-danger"> -29% </span> <span class="ml-2">From previous period</span>
-                          </div>
-                      </div>
-                      <div class="mini-stat-icon">
-                          <i class="mdi mdi-buffer display-2"></i>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-xl-3 col-md-6">
-          <div class="card bg-danger mini-stat position-relative">
-              <div class="card-body">
-                  <div class="mini-stat-desc">
-                      <h6 class="text-uppercase verti-label text-white-50">Av. Price</h6>
-                      <div class="text-white">
-                          <h6 class="text-uppercase mt-0 text-white-50">Average Price</h6>
-                          <h3 class="mb-3 mt-0">15.9</h3>
-                          <div class="">
-                              <span class="badge badge-light text-primary"> 0% </span> <span class="ml-2">From previous period</span>
-                          </div>
-                      </div>
-                      <div class="mini-stat-icon">
-                          <i class="mdi mdi-tag-text-outline display-2"></i>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-xl-3 col-md-6">
-          <div class="card bg-danger mini-stat position-relative">
-              <div class="card-body">
-                  <div class="mini-stat-desc">
-                      <h6 class="text-uppercase verti-label text-white-50">Pr. Sold</h6>
-                      <div class="text-white">
-                          <h6 class="text-uppercase mt-0 text-white-50">Product Sold</h6>
-                          <h3 class="mb-3 mt-0">1890</h3>
-                          <div class="">
-                              <span class="badge badge-light text-info"> +89% </span> <span class="ml-2">From previous period</span>
-                          </div>
-                      </div>
-                      <div class="mini-stat-icon">
-                          <i class="mdi mdi-briefcase-check display-2"></i>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- end row -->
-  
-  <div class="row">
-      <div class="col-xl-9">
-          <div class="card">
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-xl-8 border-right">
-                          <h4 class="mt-0 header-title mb-4">Sales Report</h4>
-                          <div id="morris-area-example" class="dashboard-charts morris-charts"></div>
-                      </div>
-                      <div class="col-xl-4">
-                          <h4 class="header-title mb-4">Yearly Sales Report</h4>
-                          <div class="p-3">
-                              <ul class="nav nav-pills nav-justified mb-3" role="tablist">
-                                  <li class="nav-item">
-                                      <a class="nav-link active" id="pills-first-tab" data-toggle="pill" href="#pills-first" role="tab" aria-controls="pills-first" aria-selected="true">2015</a>
-                                  </li>
-                                  <li class="nav-item">
-                                      <a class="nav-link" id="pills-second-tab" data-toggle="pill" href="#pills-second" role="tab" aria-controls="pills-second" aria-selected="false">2016</a>
-                                  </li>
-                                  <li class="nav-item">
-                                      <a class="nav-link" id="pills-third-tab" data-toggle="pill" href="#pills-third" role="tab" aria-controls="pills-third" aria-selected="false">2017</a>
-                                  </li>
-                              </ul>
-                              
-                              <div class="tab-content">
-                                  <div class="tab-pane show active" id="pills-first" role="tabpanel" aria-labelledby="pills-first-tab">
-                                      <div class="p-3">
-                                          <h2>$17562</h2>
-                                          <p class="text-muted">Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus Nullam quis ante.</p>
-                                          <a href="#" class="text-primary">Read more...</a>
-                                      </div>
-                                  </div>
-                                  <div class="tab-pane" id="pills-second" role="tabpanel" aria-labelledby="pills-second-tab">
-                                      <div class="p-3">
-                                          <h2>$18614</h2>
-                                          <p class="text-muted">Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus Nullam quis ante.</p>
-                                          <a href="#" class="text-primary">Read more...</a>
-                                      </div>
-                                  </div>
-                                  <div class="tab-pane" id="pills-third" role="tabpanel" aria-labelledby="pills-third-tab">
-                                      <div class="p-3">
-                                          <h2>$19752</h2>
-                                          <p class="text-muted">Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus Nullam quis ante.</p>
-                                          <a href="#" class="text-primary">Read more...</a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- end row -->
-              </div>
-          </div>
-      </div>
-      <!-- end col -->
-      
-      <div class="col-xl-3">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="mt-0 header-title mb-4">Sales Analytics</h4>
-                  <div id="morris-donut-example" class="dashboard-charts morris-charts"></div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- end row -->
-  
-  <div class="row">
-      <div class="col-xl-4">
-          <div class="card m-b-20">
-              <div class="card-body">
-                  <h4 class="mt-0 header-title mb-3">Inbox</h4>
-                  <div class="inbox-wid">
-                      <a href="#" class="text-dark">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img float-left mr-3"><img src="assets/images/users/user-1.jpg" class="thumb-md rounded-circle" alt=""></div>
-                              <h6 class="inbox-item-author mt-0 mb-1">Irene</h6>
-                              <p class="inbox-item-text text-muted mb-0">Hey! there I'm available...</p>
-                              <p class="inbox-item-date text-muted">13:40 PM</p>
-                          </div>
-                      </a>
-                      <a href="#" class="text-dark">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img float-left mr-3"><img src="assets/images/users/user-2.jpg" class="thumb-md rounded-circle" alt=""></div>
-                              <h6 class="inbox-item-author mt-0 mb-1">Jennifer</h6>
-                              <p class="inbox-item-text text-muted mb-0">I've finished it! See you so...</p>
-                              <p class="inbox-item-date text-muted">13:34 PM</p>
-                          </div>
-                      </a>
-                      <a href="#" class="text-dark">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img float-left mr-3"><img src="assets/images/users/user-3.jpg" class="thumb-md rounded-circle" alt=""></div>
-                              <h6 class="inbox-item-author mt-0 mb-1">Richard</h6>
-                              <p class="inbox-item-text text-muted mb-0">This theme is awesome!</p>
-                              <p class="inbox-item-date text-muted">13:17 PM</p>
-                          </div>
-                      </a>
-                      <a href="#" class="text-dark">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img float-left mr-3"><img src="assets/images/users/user-4.jpg" class="thumb-md rounded-circle" alt=""></div>
-                              <h6 class="inbox-item-author mt-0 mb-1">Martin</h6>
-                              <p class="inbox-item-text text-muted mb-0">Nice to meet you</p>
-                              <p class="inbox-item-date text-muted">12:20 PM</p>
-                          </div>
-                      </a>
-                      <a href="#" class="text-dark">
-                          <div class="inbox-item">
-                              <div class="inbox-item-img float-left mr-3"><img src="assets/images/users/user-5.jpg" class="thumb-md rounded-circle" alt=""></div>
-                              <h6 class="inbox-item-author mt-0 mb-1">Sean</h6>
-                              <p class="inbox-item-text text-muted mb-0">Hey! there I'm available...</p>
-                              <p class="inbox-item-date text-muted">11:47 AM</p>
-                          </div>
-                      </a>
-                      
-                  </div>  
-              </div>
-          </div>
+<section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+          <div class="inner">
+            <h3>150</h3>
 
-      </div>
-      <div class="col-xl-4">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="mt-0 header-title mb-5">Recent Activity Feed</h4>
-                  <div>
-                      <ul class="nav nav-pills nav-justified recent-activity-tab mb-4" id="recent-activity-tab" role="tablist">
-                          <li class="nav-item">
-                              <a class="nav-link active" id="activity1-tab" data-toggle="pill" href="#activity1" role="tab" aria-controls="activity1" aria-selected="true">21 Sep</a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" id="activity2-tab" data-toggle="pill" href="#activity2" role="tab" aria-controls="activity2" aria-selected="false">22 Sep</a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" id="activity3-tab" data-toggle="pill" href="#activity3" role="tab" aria-controls="activity3" aria-selected="false">23 Sep</a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" id="activity4-tab" data-toggle="pill" href="#activity4" role="tab" aria-controls="activity4" aria-selected="false">24 Sep</a>
-                          </li>
-                      </ul>
-                      <div class="tab-content">
-                          <div class="tab-pane show active" id="activity1" role="tabpanel" aria-labelledby="activity1-tab">
-                              <div class="p-3">
-                                  <div class="text-muted">
-                                      <p>21 Sep, 2018</p>
-                                      <h6 class="text-dark">Responded to need “Volunteer Activities”</h6>
-                                      <p>Aenean vulputate eleifend tellus</p>
-                                      <p>Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus Nullam quis ante.</p>
-                                      <a href="#" class="text-primary">Read More...</a>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="tab-pane" id="activity2" role="tabpanel" aria-labelledby="activity2-tab">
-                              <div class="p-3">
-                                  <div class="text-muted">
-                                      <p>22 Sep, 2018</p>
-                                      <h6 class="text-dark">Added an interest “Volunteer Activities”</h6>
-                                      <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet consectetur velit sed quia non tempora incidunt.</p>
-                                      <p>Ut enim ad minima veniam quis nostrum</p>
-                                      <a href="#" class="text-primary">Read More...</a>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="tab-pane" id="activity3" role="tabpanel" aria-labelledby="activity3-tab">
-                              <div class="p-3">
-                                  <div class="text-muted">
-                                      <p>23 Sep, 2018</p>
-                                      <h6 class="text-dark">Joined the group “Boardsmanship Forum”</h6>
-                                      <p>Nemo enim voluptatem quia voluptas</p>
-                                      <p>Donec pede justo fringilla vel aliquet nec vulputate eget arcu. In enim justo rhoncus ut imperdiet a venenatis vitae. </p>
-                                      <a href="#" class="text-primary">Read More...</a>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="tab-pane" id="activity4" role="tabpanel" aria-labelledby="activity4-tab">
-                              <div class="p-3">
-                                  <div class="text-muted">
-                                      <p>24 Sep, 2018</p>
-                                      <h6 class="text-dark">Attending the event “Some New Event”</h6>
-                                      <p>At vero eos et accusamus et iusto odio</p>
-                                      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium </p>
-                                      <a href="#" class="text-primary">Read More...</a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+            <p>New Orders</p>
           </div>
-      </div>
-      <div class="col-xl-4">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="mt-0 header-title mb-4">Top product sales</h4>
-                  <div class="table-responsive">
-                      <table class="table table-hover mb-0">
-                          <tbody>
-                              <tr>
-                                  <td>
-                                      <h6 class="mt-0">Computers</h6>
-                                      <p class="text-muted mb-0">The languages only differ</p>
-                                  </td>
-                                  <td>
-                                      <div>
-                                          <span class="peity-pie" data-peity='{ "fill": ["#1b82ec", "#f2f2f2"]}' data-width="54" data-height="54">70/100</span>
-                                      </div>
-                                  </td>
-                                  <td>
-                                      <h6 class="mt-0">70%</h6>
-                                      <p class="text-muted mb-0">Sales</p>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                      <h6 class="mt-0">Laptops</h6>
-                                      <p class="text-muted mb-0">Maecenas tempus tellus</p>
-                                  </td>
-                                  <td>
-                                      <div>
-                                          <span class="peity-donut" data-peity='{ "fill": ["#f5b225", "#f2f2f2"], "innerRadius": 20, "radius": 32 }' data-width="54" data-height="54">9,4</span>
-                                      </div>
-                                  </td>
-                                  <td>
-                                      <h6 class="mt-0">84%</h6>
-                                      <p class="text-muted mb-0">Sales</p>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                      <h6 class="mt-0">Ipad</h6>
-                                      <p class="text-muted mb-0">Donec pede justo</p>
-                                  </td>
-                                  <td>
-                                      <div>
-                                          <span class="peity-pie" data-peity='{ "fill": ["#1b82ec", "#f2f2f2"]}' data-width="54" data-height="54">62/100</span>
-                                      </div>
-                                  </td>
-                                  <td>
-                                      <h6 class="mt-0">62%</h6>
-                                      <p class="text-muted mb-0">Sales</p>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                      <h6 class="mt-0">Mobile</h6>
-                                      <p class="text-muted mb-0">Aenean leo ligula</p>
-                                  </td>
-                                  <td>
-                                      <div>
-                                          <span class="peity-donut" data-peity='{ "fill": ["#f5b225", "#f2f2f2"], "innerRadius": 20, "radius": 32 }' data-width="54" data-height="54">20,4</span>
-                                      </div>
-                                  </td>
-                                  <td>
-                                      <h6 class="mt-0">89%</h6>
-                                      <p class="text-muted mb-0">Sales</p>
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
+          <div class="icon">
+            <i class="ion ion-bag"></i>
           </div>
+          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
       </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+          <div class="inner">
+            <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-  </div>
-  <!-- end row -->
+            <p>Bounce Rate</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+          <div class="inner">
+            <h3>44</h3>
 
-  <div class="row">
-      <div class="col-xl-6">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="mt-0 header-title mb-4">Latest Trasaction</h4>
-                  <div class="table-responsive">
-                      <table class="table table-hover mb-0">
-                          <thead>
-                            <tr>
-                              <th scope="col">(#) Id</th>
-                              <th scope="col">Name</th>
-                              <th scope="col">Date</th>
-                              <th scope="col">Amount</th>
-                              <th scope="col" colspan="2">Status</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">#15236</th>
-                              <td>
-                                  <div>
-                                      <img src="assets/images/users/user-2.jpg" alt="" class="thumb-md rounded-circle mr-2"> Jeanette James
-                                  </div>
-                              </td>
-                              <td>14/8/2018</td>
-                              <td>$104</td>
-                              <td><span class="badge badge-success">Delivered</span></td>
-                              <td>
-                                  <div>
-                                      <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                  </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">#15237</th>
-                              <td>
-                                  <div>
-                                      <img src="assets/images/users/user-3.jpg" alt="" class="thumb-md rounded-circle mr-2"> Christopher Taylor
-                                  </div>
-                              </td>
-                              <td>15/8/2018</td>
-                              <td>$112</td>
-                              <td><span class="badge badge-warning">Pending</span></td>
-                              <td>
-                                  <div>
-                                      <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                  </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">#15238</th>
-                              <td>
-                                  <div>
-                                      <img src="assets/images/users/user-4.jpg" alt="" class="thumb-md rounded-circle mr-2"> Edward Vazquez
-                                  </div>
-                              </td>
-                              <td>15/8/2018</td>
-                              <td>$116</td>
-                              <td><span class="badge badge-success">Delivered</span></td>
-                              <td>
-                                  <div>
-                                      <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                  </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">#15239</th>
-                              <td>
-                                  <div>
-                                      <img src="assets/images/users/user-5.jpg" alt="" class="thumb-md rounded-circle mr-2"> Michael Flannery
-                                  </div>
-                              </td>
-                              <td>16/8/2018</td>
-                              <td>$109</td>
-                              <td><span class="badge badge-primary">Cancel</span></td>
-                              <td>
-                                  <div>
-                                      <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                  </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <th scope="row">#15240</th>
-                              <td>
-                                  <div>
-                                      <img src="assets/images/users/user-6.jpg" alt="" class="thumb-md rounded-circle mr-2"> Jamie Fishbourne
-                                  </div>
-                              </td>
-                              <td>17/8/2018</td>
-                              <td>$120</td>
-                              <td><span class="badge badge-success">Delivered</span></td>
-                              <td>
-                                  <div>
-                                      <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                  </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
+            <p>User Registrations</p>
           </div>
-      </div>
-      <div class="col-xl-6">
-          <div class="card">
-              <div class="card-body">
-                  <h4 class="mt-0 header-title mb-4">Latest Order</h4>
-                  <div class="table-responsive order-table">
-                      <table class="table table-hover mb-0">
-                          <thead>
-                              <tr>
-                              <th scope="col">(#) Id</th>
-                              <th scope="col">Name</th>
-                              <th scope="col">Date/Time</th>
-                              <th scope="col">Amount</th>
-                              <th scope="col" colspan="2">Status</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <th scope="row">#14562</th>
-                                  <td>
-                                      <div>
-                                          <img src="assets/images/users/user-4.jpg" alt="" class="thumb-md rounded-circle mr-2"> Matthew Drapeau
-                                      </div>
-                                  </td>
-                                  <td>17/8/2018
-                                      <p class="font-13 text-muted mb-0">8:26AM</p>
-                                  </td>
-                                  <td>$104</td>
-                                  <td><span class="badge badge-success badge-pill"><i class="mdi mdi-checkbox-blank-circle text-success"></i> Delivered</span></td>
-                                  <td>
-                                      <div>
-                                          <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th scope="row">#14563</th>
-                                  <td>
-                                      <div>
-                                          <img src="assets/images/users/user-5.jpg" alt="" class="thumb-md rounded-circle mr-2"> Ralph Shockey
-                                      </div>
-                                  </td>
-                                  <td>18/8/2018
-                                      <p class="font-13 text-muted mb-0">10:18AM</p>
-                                  </td>
-                                  <td>$112</td>
-                                  <td><span class="badge badge-warning badge-pill"><i class="mdi mdi-checkbox-blank-circle text-warning"></i> Pending</span></td>
-                                  <td>
-                                      <div>
-                                          <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th scope="row">#14564</th>
-                                  <td>
-                                      <div>
-                                          <img src="assets/images/users/user-6.jpg" alt="" class="thumb-md rounded-circle mr-2"> Alexander Pierson
-                                      </div>
-                                  </td>
-                                  <td>18//8/2018
-                                      <p class="font-13 text-muted mb-0">12:36PM</p>
-                                  </td>
-                                  <td>$116</td>
-                                  <td><span class="badge badge-success badge-pill"><i class="mdi mdi-checkbox-blank-circle text-success"></i> Delivered</span></td>
-                                  <td>
-                                      <div>
-                                          <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th scope="row">#14565</th>
-                                  <td>
-                                      <div>
-                                          <img src="assets/images/users/user-7.jpg" alt="" class="thumb-md rounded-circle mr-2"> Robert Rankin
-                                      </div>
-                                  </td>
-                                  <td>19/8/2018
-                                      <p class="font-13 text-muted mb-0">11:47AM</p>
-                                  </td>
-                                  <td>$109</td>
-                                  <td><span class="badge badge-primary badge-pill"><i class="mdi mdi-checkbox-blank-circle text-primary"></i> Cancel</span></td>
-                                  <td>
-                                      <div>
-                                          <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                      </div>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th scope="row">#14566</th>
-                                  <td>
-                                      <div>
-                                          <img src="assets/images/users/user-8.jpg" alt="" class="thumb-md rounded-circle mr-2"> Myrna Shields
-                                      </div>
-                                  </td>
-                                  <td>20/8/2018
-                                      <p class="font-13 text-muted mb-0">02:52PM</p>
-                                  </td>
-                                  <td>$120</td>
-                                  <td><span class="badge badge-success badge-pill"><i class="mdi mdi-checkbox-blank-circle text-success"></i> Delivered</span></td>
-                                  <td>
-                                      <div>
-                                          <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                      </div>
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
+          <div class="icon">
+            <i class="ion ion-person-add"></i>
           </div>
+          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
       </div>
-  </div>
-  <!-- end row -->
-</div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+          <div class="inner">
+            <h3>65</h3>
+
+            <p>Unique Visitors</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-pie-graph"></i>
+          </div>
+          <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+    </div>
+    <!-- /.row -->
+    <!-- Main row -->
+    <div class="row">
+      <!-- Left col -->
+      <section class="col-lg-7 connectedSortable">
+        <!-- Custom tabs (Charts with tabs)-->
+        <div class="nav-tabs-custom">
+          <!-- Tabs within a box -->
+          <ul class="nav nav-tabs pull-right">
+            <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+            <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
+            <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+          </ul>
+          <div class="tab-content no-padding">
+            <!-- Morris chart - Sales -->
+            <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+            <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+          </div>
+        </div>
+        <!-- /.nav-tabs-custom -->
+
+        <!-- Chat box -->
+        <div class="box box-success">
+          <div class="box-header">
+            <i class="fa fa-comments-o"></i>
+
+            <h3 class="box-title">Chat</h3>
+
+            <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+              <div class="btn-group" data-toggle="btn-toggle">
+                <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
+                </button>
+                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="box-body chat" id="chat-box">
+            <!-- chat item -->
+            <div class="item">
+              <img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
+
+              <p class="message">
+                <a href="#" class="name">
+                  <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+                  Mike Doe
+                </a>
+                I would like to meet you to discuss the latest news about
+                the arrival of the new theme. They say it is going to be one the
+                best themes on the market
+              </p>
+              <div class="attachment">
+                <h4>Attachments:</h4>
+
+                <p class="filename">
+                  Theme-thumbnail-image.jpg
+                </p>
+
+                <div class="pull-right">
+                  <button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
+                </div>
+              </div>
+              <!-- /.attachment -->
+            </div>
+            <!-- /.item -->
+            <!-- chat item -->
+            <div class="item">
+              <img src="dist/img/user3-128x128.jpg" alt="user image" class="offline">
+
+              <p class="message">
+                <a href="#" class="name">
+                  <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
+                  Alexander Pierce
+                </a>
+                I would like to meet you to discuss the latest news about
+                the arrival of the new theme. They say it is going to be one the
+                best themes on the market
+              </p>
+            </div>
+            <!-- /.item -->
+            <!-- chat item -->
+            <div class="item">
+              <img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">
+
+              <p class="message">
+                <a href="#" class="name">
+                  <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
+                  Susan Doe
+                </a>
+                I would like to meet you to discuss the latest news about
+                the arrival of the new theme. They say it is going to be one the
+                best themes on the market
+              </p>
+            </div>
+            <!-- /.item -->
+          </div>
+          <!-- /.chat -->
+          <div class="box-footer">
+            <div class="input-group">
+              <input class="form-control" placeholder="Type message...">
+
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.box (chat box) -->
+
+        <!-- TO DO List -->
+        <div class="box box-primary">
+          <div class="box-header">
+            <i class="ion ion-clipboard"></i>
+
+            <h3 class="box-title">To Do List</h3>
+
+            <div class="box-tools pull-right">
+              <ul class="pagination pagination-sm inline">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+            <ul class="todo-list">
+              <li>
+                <!-- drag handle -->
+                <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                <!-- checkbox -->
+                <input type="checkbox" value="">
+                <!-- todo text -->
+                <span class="text">Design a nice theme</span>
+                <!-- Emphasis label -->
+                <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                <!-- General tools such as edit or delete-->
+                <div class="tools">
+                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </li>
+              <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                <input type="checkbox" value="">
+                <span class="text">Make the theme responsive</span>
+                <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+                <div class="tools">
+                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </li>
+              <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                <input type="checkbox" value="">
+                <span class="text">Let theme shine like a star</span>
+                <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+                <div class="tools">
+                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </li>
+              <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                <input type="checkbox" value="">
+                <span class="text">Let theme shine like a star</span>
+                <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
+                <div class="tools">
+                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </li>
+              <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                <input type="checkbox" value="">
+                <span class="text">Check your messages and notifications</span>
+                <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+                <div class="tools">
+                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </li>
+              <li>
+                    <span class="handle">
+                      <i class="fa fa-ellipsis-v"></i>
+                      <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                <input type="checkbox" value="">
+                <span class="text">Let theme shine like a star</span>
+                <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
+                <div class="tools">
+                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-trash-o"></i>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer clearfix no-border">
+            <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+          </div>
+        </div>
+        <!-- /.box -->
+
+        <!-- quick email widget -->
+        <div class="box box-info">
+          <div class="box-header">
+            <i class="fa fa-envelope"></i>
+
+            <h3 class="box-title">Quick Email</h3>
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+              <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
+                      title="Remove">
+                <i class="fa fa-times"></i></button>
+            </div>
+            <!-- /. tools -->
+          </div>
+          <div class="box-body">
+            <form action="#" method="post">
+              <div class="form-group">
+                <input type="email" class="form-control" name="emailto" placeholder="Email to:">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" placeholder="Subject">
+              </div>
+              <div>
+                <textarea class="textarea" placeholder="Message"
+                          style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="box-footer clearfix">
+            <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
+              <i class="fa fa-arrow-circle-right"></i></button>
+          </div>
+        </div>
+
+      </section>
+      <!-- /.Left col -->
+      <!-- right col (We are only adding the ID to make the widgets sortable)-->
+      <section class="col-lg-5 connectedSortable">
+
+        <!-- Map box -->
+        <div class="box box-solid bg-light-blue-gradient">
+          <div class="box-header">
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+              <button type="button" class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip"
+                      title="Date range">
+                <i class="fa fa-calendar"></i></button>
+              <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse"
+                      data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
+                <i class="fa fa-minus"></i></button>
+            </div>
+            <!-- /. tools -->
+
+            <i class="fa fa-map-marker"></i>
+
+            <h3 class="box-title">
+              Visitors
+            </h3>
+          </div>
+          <div class="box-body">
+            <div id="world-map" style="height: 250px; width: 100%;"></div>
+          </div>
+          <!-- /.box-body-->
+          <div class="box-footer no-border">
+            <div class="row">
+              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                <div id="sparkline-1"></div>
+                <div class="knob-label">Visitors</div>
+              </div>
+              <!-- ./col -->
+              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                <div id="sparkline-2"></div>
+                <div class="knob-label">Online</div>
+              </div>
+              <!-- ./col -->
+              <div class="col-xs-4 text-center">
+                <div id="sparkline-3"></div>
+                <div class="knob-label">Exists</div>
+              </div>
+              <!-- ./col -->
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        <!-- /.box -->
+
+        <!-- solid sales graph -->
+        <div class="box box-solid bg-teal-gradient">
+          <div class="box-header">
+            <i class="fa fa-th"></i>
+
+            <h3 class="box-title">Sales Graph</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="box-body border-radius-none">
+            <div class="chart" id="line-chart" style="height: 250px;"></div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer no-border">
+            <div class="row">
+              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                       data-fgColor="#39CCCC">
+
+                <div class="knob-label">Mail-Orders</div>
+              </div>
+              <!-- ./col -->
+              <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                       data-fgColor="#39CCCC">
+
+                <div class="knob-label">Online</div>
+              </div>
+              <!-- ./col -->
+              <div class="col-xs-4 text-center">
+                <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
+                       data-fgColor="#39CCCC">
+
+                <div class="knob-label">In-Store</div>
+              </div>
+              <!-- ./col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.box-footer -->
+        </div>
+        <!-- /.box -->
+
+        <!-- Calendar -->
+        <div class="box box-solid bg-green-gradient">
+          <div class="box-header">
+            <i class="fa fa-calendar"></i>
+
+            <h3 class="box-title">Calendar</h3>
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+              <!-- button with a dropdown -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bars"></i></button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                  <li><a href="#">Add new event</a></li>
+                  <li><a href="#">Clear events</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">View calendar</a></li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+              </button>
+            </div>
+            <!-- /. tools -->
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body no-padding">
+            <!--The calendar -->
+            <div id="calendar" style="width: 100%"></div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer text-black">
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- Progress bars -->
+                <div class="clearfix">
+                  <span class="pull-left">Task #1</span>
+                  <small class="pull-right">90%</small>
+                </div>
+                <div class="progress xs">
+                  <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                </div>
+
+                <div class="clearfix">
+                  <span class="pull-left">Task #2</span>
+                  <small class="pull-right">70%</small>
+                </div>
+                <div class="progress xs">
+                  <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-6">
+                <div class="clearfix">
+                  <span class="pull-left">Task #3</span>
+                  <small class="pull-right">60%</small>
+                </div>
+                <div class="progress xs">
+                  <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                </div>
+
+                <div class="clearfix">
+                  <span class="pull-left">Task #4</span>
+                  <small class="pull-right">40%</small>
+                </div>
+                <div class="progress xs">
+                  <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+        <!-- /.box -->
+
+      </section>
+      <!-- right col -->
+    </div>
+    <!-- /.row (main row) -->
+
+  </section>
 @endsection
-
