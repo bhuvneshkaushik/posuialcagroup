@@ -32,7 +32,7 @@
         <li><a href="#"><i class="fa fa-circle-o"></i> Manajemen User</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i>Manajemen Shift</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i> Data Supplier</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i>Data Kategori</a></li>
+        <li><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i>Data Kategori</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i>Data Brand</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i>Data Pelanggan</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i>Data Produk</a></li>
