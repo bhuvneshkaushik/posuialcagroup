@@ -33,7 +33,8 @@
             <tr>
               <th>#</th>
               <th>Brand Name</th>
-              <th>Description</th>
+              <th>Status</th>
+              <th>Tools</th>
             </tr>
             </thead>
             <tbody>
@@ -44,7 +45,15 @@
                   <tr>
                     <td>{{ $no }}</td>
                     <td>{{ $i->name }}</td>
-                    <td>{{ $i->status }}</td>
+                    <td>@if ($i->status == 'y')
+                        <label class="btn btn-success">{{ $i->status }}</label>
+                       @else 
+                       <label class="btn btn-danger">{{ $i->status }}</label>
+                    @endif
+                      </td>
+                    <td><button class="btn btn-success" title="Edit"><i class="fa fa-edit"></i></button> 
+                    <a href="#" class="btn btn-warning" title="Show"><i class="fa fa-eye"></i></a>
+                    </td>
                   </tr>
                   @php
                       $no++
@@ -59,7 +68,7 @@
             <tr>
               <th>#</th>
               <th>Name Brand</th>
-              <th>Description</th>
+              <th>Status</th>
               
             </tr>
             </tfoot>

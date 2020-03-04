@@ -44,6 +44,16 @@ class BrandController extends Controller
             'name' => 'required|string|max:50',
             'status' => 'nullable|string'
         ]);
+
+        try{
+            $brands = Brand::firstOrCreate([
+                'name' => $request->name],
+                ['status' => $request->status]);
+                return redirect()->route('brand.index')->with(['success' => 'Brand' . $brands->name . 'Ditambahkan' ]);
+
+        } catch(\Exception $e){
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
     /**
