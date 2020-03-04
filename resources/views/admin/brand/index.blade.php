@@ -74,7 +74,7 @@
               <th>#</th>
               <th>Name Brand</th>
               <th>Status</th>
-              
+              <th></th>
             </tr>
             </tfoot>
           </table>
@@ -106,6 +106,7 @@
       'paging'      : true,
       'lengthChange': false,
       'searching'   : false,
+      'scrollX'     : true,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : false
