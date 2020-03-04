@@ -30,7 +30,8 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-{{-- @include('admin.components.js') --}}
+@include('admin.components.js')
 @yield('js-page')
+
 </body>
 </html>

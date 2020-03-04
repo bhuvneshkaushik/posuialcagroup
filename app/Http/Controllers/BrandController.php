@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Brand;
 use Illuminate\Http\Request;
+use DB;
 
 class BrandController extends Controller
 {
@@ -14,7 +15,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return view('admin.brand.index');
+        $brands = DB::table('brands')->get();
+        return view('admin.brand.index', compact('brands'));
     }
 
     /**
@@ -25,6 +27,7 @@ class BrandController extends Controller
     public function create()
     {
         //
+        return view('admin.brand.create');
     }
 
     /**

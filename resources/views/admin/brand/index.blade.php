@@ -14,7 +14,7 @@
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li class="active">Brand</li>
     </ol>
-  </section>
+</section>
 
 @endsection
 
@@ -24,51 +24,43 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Data Table With Full Features</h3>
-          <a href="#" class="btn btn-success">Add Brand</a>
+          <a href="{{ route('brand.create') }}" class="btn btn-success">Add Brand</a>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
           <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>
-              <th>Rendering engine</th>
-              <th>Browser</th>
-              <th>Platform(s)</th>
-              <th>Engine version</th>
-              <th>CSS grade</th>
+              <th>#</th>
+              <th>Brand Name</th>
+              <th>Description</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>Misc</td>
-              <td>IE Mobile</td>
-              <td>Windows Mobile 6</td>
-              <td>-</td>
-              <td>C</td>
-            </tr>
-            <tr>
-              <td>Misc</td>
-              <td>PSP browser</td>
-              <td>PSP</td>
-              <td>-</td>
-              <td>C</td>
-            </tr>
-            <tr>
-              <td>Other browsers</td>
-              <td>All others</td>
-              <td>-</td>
-              <td>-</td>
-              <td>U</td>
-            </tr>
+              @php
+                $no = 1;   
+              @endphp
+              @forelse ($brands as $i)
+                  <tr>
+                    <td>{{ $no }}</td>
+                    <td>{{ $i->name }}</td>
+                    <td>{{ $i->status }}</td>
+                  </tr>
+                  @php
+                      $no++
+                  @endphp
+              @empty
+                  <tr>
+                    <td colspan="3" class="text-center">Tidak Ada Data</td>
+                  </tr>
+              @endforelse
             </tbody>
             <tfoot>
             <tr>
-              <th>Rendering engine</th>
-              <th>Browser</th>
-              <th>Platform(s)</th>
-              <th>Engine version</th>
-              <th>CSS grade</th>
+              <th>#</th>
+              <th>Name Brand</th>
+              <th>Description</th>
+              
             </tr>
             </tfoot>
           </table>
@@ -84,10 +76,6 @@
 @endsection
 
 @section('js-page')
-    <!-- jQuery 3 -->
-<script src="{{URL::asset('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{URL::asset('asset/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- DataTables -->
 <script src="{{URL::asset('asset/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{URL::asset('asset/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
@@ -98,7 +86,7 @@
 <!-- AdminLTE App -->
 <script src="{{URL::asset('asset/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{URL::asset('asset/../../dist/js/demo.js')}}"></script>
+<script src="{{URL::asset('asset/dist/js/demo.js')}}"></script>
 <!-- page script -->
 <script>
   $(function () {
