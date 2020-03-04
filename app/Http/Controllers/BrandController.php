@@ -39,6 +39,11 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         //
+        //validasi form
+        $this->validate($request, [
+            'name' => 'required|string|max:50',
+            'status' => 'nullable|string'
+        ]);
     }
 
     /**
