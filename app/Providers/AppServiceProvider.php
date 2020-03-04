@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Blade::component('admin.components.card','card');
+        Blade::component('admin.components.alert','alert');
     }
 }

@@ -22,6 +22,11 @@
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
+      @if (session('success'))
+        @alert(['type' => 'success'])
+            {!! session('success') !!}
+        @endalert
+      @endif
       <div class="box">
         <div class="box-header">
           <a href="{{ route('brand.create') }}" class="btn btn-success">Add Brand</a>
