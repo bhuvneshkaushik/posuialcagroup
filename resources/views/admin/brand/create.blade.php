@@ -20,7 +20,7 @@
 @section('content')
     <section class="content">
         <div class="col-md-8">
-          
+          @card
               @slot('title')
                   Tambah
               @endslot
@@ -55,14 +55,14 @@
                   </div>
                   
                 </div>
-
+               <div class="box-footer">
+                <button type="submit" class="btn btn-info pull-right">Sign in</button>
+              </div>    
+              
                
-                <div class="box-footer">
-                  <button type="submit" class="btn btn-info pull-right">Sign in</button>
-                </div>
             
               </form>
-          
+          @endcard
             </div>
            
           </div>
