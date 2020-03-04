@@ -65,7 +65,7 @@
                   @endphp
               @empty
                   <tr>
-                    <td colspan="3" class="text-center">Tidak Ada Data</td>
+                    <td colspan="4" class="text-center">Tidak Ada Data</td>
                   </tr>
               @endforelse
             </tbody>
@@ -93,10 +93,6 @@
 <!-- DataTables -->
 <script src="{{URL::asset('asset/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{URL::asset('asset/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<!-- FastClick -->
-<script src="{{URL::asset('asset/bower_components/fastclick/lib/fastclick.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{URL::asset('asset/dist/js/adminlte.min.js')}}"></script>
 
 <!-- page script -->
 <script>
@@ -106,7 +102,6 @@
       'paging'      : true,
       'lengthChange': false,
       'searching'   : false,
-      'scrollX'     : true,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : false
