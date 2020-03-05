@@ -15,6 +15,11 @@ class CreateFundsTable extends Migration
     {
         Schema::create('funds', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('account_id')->unsigned();
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade')->onUpdate('cascade');
+            $table->date('fundDate')->nullable();
+            $table->integer('fundAmount')->unsigned()->nullable()->default(12);
+            $table->string('fundNote', 100)->nullable()->default('text');
             $table->timestamps();
         });
     }

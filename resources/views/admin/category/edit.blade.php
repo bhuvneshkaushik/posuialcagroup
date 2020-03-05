@@ -36,14 +36,15 @@
               </div>
               <!-- /.box-header -->
               <!-- form start -->
-              <form class="form-horizontal" action="{{ route('category.store') }}" method="POST">
+              <form class="form-horizontal" action="{{ route('category.update', $category->id) }}" method="POST">
                 @csrf
+                <input type="hidden" name="_method" value="PUT">
                 <div class="box-body">
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
   
                     <div class="col-sm-10">
-                      <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid':'' }}"  placeholder="category Name" required>
+                      <input type="text" name="name" value="{{ $category->name }}" class="form-control {{ $errors->has('name') ? 'is-invalid':'' }}"  placeholder="category Name" required>
                     </div>
                   </div>
                   <div class="form-group">
@@ -52,8 +53,14 @@
                     <div class="col-sm-10">
                       <select name="status" required class="form-control {{ $errors->has('status') ? 'is-invalid' :'' }}">
                         <option value="0">--Pilih--</option>
-                        <option value="y">Y</option>
+                        @if ($category->status == 'y')
+                        <option value="{{ $category->status }}" selected>{{ $category->status }}</option>
                         <option value="n">N</option>
+                        @else
+                        <option value="{{ $category->status }}" selected>{{ $category->status }}</option>
+                        <option value="y">Y</option>
+                        @endif
+                        
                       </select>
                     </div>
                   </div>

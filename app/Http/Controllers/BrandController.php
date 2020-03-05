@@ -64,7 +64,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        abort(404);
     }
 
     /**

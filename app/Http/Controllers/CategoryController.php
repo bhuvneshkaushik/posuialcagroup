@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use DB;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return view('admin.category.index');
+        $category = DB::table('categories')->get();
+        return view('admin.category.index', compact('category'));
     }
     /**
      * Show the form for creating a new resource.
@@ -35,7 +38,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:50',
+            'status' => 'nullable|string'
+        ]);
+
+        try{
+            $category = Category::firstOrCreate([
+                'name' => $request->name],
+                ['status' => $request->status]
+            );
+            return redirect()->route('category.index')->with(['success' => 'Category'. $category->name . 'Ditambahkan']);
+        } catch(\Exception $e){
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
+
+
     }
 
     /**
@@ -57,7 +75,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrfail($id);
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -69,7 +88,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name'      => 'required|string|max:50',
+            'status'    => 'nullable|string'
+        ]);
+        try{
+            $categories = Category::findOrFail($id);
+            $categories->update([
+                'name' => $request->name,
+                'status' => $request->status
+            ]);
+            return redirect()->route('category.index')->with(['success' => 'Category'. $categories->name . 'Ditambahkan']);
+        } catch(\Exception $e){
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -80,6 +112,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categories = Category::findOrfail($id);
+        $categories->delete();
+        return redirect()->route('category.index')->with(['success' => 'Category'. $categories->name . 'Dihapus']);
     }
 }
