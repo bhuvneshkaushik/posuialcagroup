@@ -73,9 +73,11 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
         //
+        $brands = Brand::findOrfail($id);
+        return view('admin.brand.edit', compact('brands'));
     }
 
     /**
@@ -85,9 +87,22 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|string|max:50',
+            'status' => 'nullable|string'
+        ]);
+        try{
+            $brands = Brand::findOrFail($id);
+            $brands->update([
+                'name'  =>  $request->name,
+                'status'=>  $request->status
+            ]);
+            return redirect(route('brand.index'))->with(['success' => 'Brand:' . $brands->name . 'DiUbah']);
+        } catch(\Exception $e){
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -96,8 +111,10 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
-        //
+        $brands = Brand::findOrfail($id);
+        $brands->delete();
+        return redirect(route('brand.index'))->with(['success' => 'Brand' . $brands->name . 'DiHapus']);
     }
 }

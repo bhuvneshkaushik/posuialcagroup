@@ -56,8 +56,14 @@
                        <label class="btn btn-danger">{{ $i->status }}</label>
                     @endif
                       </td>
-                    <td><button class="btn btn-success" title="Edit"><i class="fa fa-edit"></i></button> 
-                    <a href="#" class="btn btn-warning" title="Show"><i class="fa fa-eye"></i></a>
+                    <td>
+                      <form action="{{ route('brand.destroy', $i->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="_method" value="DELETE">
+                        <a href="{{route('brand.edit', $i->id)}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
+                        {{-- <a href="#" class="btn btn-info btn-sm" title="Show"><i class="fa fa-eye"></i></a> --}}
+                        <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>
+                      </form>
                     </td>
                   </tr>
                   @php
@@ -74,7 +80,7 @@
               <th>#</th>
               <th>Name Brand</th>
               <th>Status</th>
-              <th></th>
+              <th>Tools</th>
             </tr>
             </tfoot>
           </table>
