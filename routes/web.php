@@ -23,3 +23,5 @@ Route::resource('category', 'CategoryController');
 Route::resource('product', 'ProductController');
 
 Route::resource('dashboard', 'DashboardController');
+
+Route::resource('rak', 'RakController');
