@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rak;
 use Illuminate\Http\Request;
+use DB;
 
 class RakController extends Controller
 {
@@ -15,6 +16,8 @@ class RakController extends Controller
     public function index()
     {
         //
+        $rak = DB::table('raks')->get();
+        return view('admin.rak.index',compact('rak'));
     }
 
     /**
@@ -24,7 +27,7 @@ class RakController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.rak.create');
     }
 
     /**
@@ -35,7 +38,11 @@ class RakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required|string|max:50',
+            'description' => 'required|string|max:50',
+            'status' => 'nullable|string'
+        ]);
     }
 
     /**
