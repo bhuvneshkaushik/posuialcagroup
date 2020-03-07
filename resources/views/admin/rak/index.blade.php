@@ -40,6 +40,7 @@
               <th>NO Rak</th>
               <th>Nama</th>
               <th>Deskripsi</th>
+              <th>Status</th>
               <th>Tools</th>
             </tr>
             </thead>
@@ -81,7 +82,9 @@
             <tfoot>
             <tr>
               <th>#</th>
+              <th>No Rak</th>
               <th>Name rak</th>
+              <th>description</th>
               <th>Status</th>
               <th>Tools</th>
             </tr>

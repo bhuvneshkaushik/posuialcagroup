@@ -40,7 +40,13 @@
                 @csrf
                 <div class="box-body">
                   <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">rak Name</label>
+                    <label for="" class="col-sm-2 control-label">No Rak</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="no_rak" class="form-control {{ $errors->has('no_rak') ? 'is-invalid':'' }}" placeholder="No Rak">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
   
                     <div class="col-sm-10">
                       <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid':'' }}"  placeholder="rak Name" required>
