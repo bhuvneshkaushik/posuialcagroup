@@ -37,5 +37,5 @@ Route::group(['middleware' => ['web','auth','level:1']], function () {
     Route::resource('product', 'ProductController');
     Route::resource('rak', 'RakController');
     Route::resource('supplier', 'SupplierController');
-
+    Route::resource('member', 'MemberController');
 });
