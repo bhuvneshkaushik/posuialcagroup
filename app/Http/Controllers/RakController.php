@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rak;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Controller;
 use DB;
 use Validator;
 
@@ -41,22 +41,21 @@ class RakController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'no_rak' => 'required|string|max:50',
+            'no_rak' => 'required|integer',
             'name' => 'required|string|max:50',
             'description' => 'required|string|max:50',
             'status' => 'nullable|string'
         ]);
-        try{
-            $raks = Rak::firstOrCreate([
-                'no_rak'=> $request->no_rak
-            ],[
-                'name' => $request->name],
-                ['description' => $request->description],
-                ['status' => $request->status]);
-            return redirect()->route('rak.index')->with(['success' =>'Rak'. $raks->name . 'Ditambahkan']);
-        } catch(\Exception $e){
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
+        
+        $r = new Rak;
+        $r->no_rak = $request->input('no_rak');
+        $r->name = $request->input('name');
+        $r->description = $request->input('description');
+        $r->status = $request->input('status');
+        $r->save();
+        // dd($r);
+        return redirect()->route('rak.index')->with(['success'=>'Rak :'. $request->name . 'Ditambahkan']);
+        
     }
 
     /**
@@ -76,9 +75,10 @@ class RakController extends Controller
      * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rak $rak)
+    public function edit($id)
     {
-        //
+        $raks = Rak::find($id);
+        return view('admin.rak.edit', compact('raks'));
     }
 
     /**
@@ -88,9 +88,16 @@ class RakController extends Controller
      * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rak $rak)
+    public function update(Request $request, $id)
     {
-        //
+        $raks = Rak::find($id);
+        $raks->no_rak = $request->input('no_rak');
+        $raks->name = $request->input('name');
+        $raks->description = $request->input('description');
+        $raks->status = $request->input('status');
+        $raks->save();
+        // dd($raks);
+        return redirect()->route('rak.index')->with(['success'=>'Rak:'. $raks->name .'Diubah']);
     }
 
     /**
@@ -99,8 +106,11 @@ class RakController extends Controller
      * @param  \App\Rak  $rak
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rak $rak)
+    public function destroy($id)
     {
-        //
+        $raks = Rak::find($id);
+        $raks->delete();
+        return redirect()->route('rak.index')->with(['success'=>'Rak'. $raks->name . 'DiHapus']);
+
     }
 }

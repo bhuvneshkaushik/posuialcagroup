@@ -15,10 +15,10 @@ class CreateRaksTable extends Migration
     {
         Schema::create('raks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('no_rak')->nullable();
+            $table->bigInteger('no_rak')->nullable();
             $table->string('name', 100)->nullable();
             $table->string('description', 100)->nullable();
-            $table->enum('status', ['y', 'n'])->nullable();
+            $table->string('status', 100)->nullable();
             $table->timestamps();
         });
     }
