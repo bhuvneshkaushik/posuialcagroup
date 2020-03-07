@@ -25,3 +25,9 @@ Route::resource('product', 'ProductController');
 Route::resource('dashboard', 'DashboardController');
 
 Route::resource('rak', 'RakController');
+
+Route::resource('supplier', 'SupplierController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
