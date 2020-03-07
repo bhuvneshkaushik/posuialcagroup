@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -11,11 +12,17 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(Request $request)
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        //
-        return view('admin.dashboard.index');
+        return view('admin.dashboard.mainAdmin');
     }
+
+   
 
     /**
      * Show the form for creating a new resource.

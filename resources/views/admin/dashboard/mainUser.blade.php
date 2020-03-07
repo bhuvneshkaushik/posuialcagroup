@@ -5,5 +5,5 @@
 @endsection
 
 @section('content-header')
-    <h1>Dashboard</h1>
+    <h1>User</h1>
 @endsection

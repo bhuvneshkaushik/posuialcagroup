@@ -16,18 +16,26 @@ Route::get('/', function () {
 });
 
 // Route::get('category','CategoryController@index');
-Route::resource('brand', 'BrandController');
-
-Route::resource('category', 'CategoryController');
-
-Route::resource('product', 'ProductController');
-
-Route::resource('dashboard', 'DashboardController');
-
-Route::resource('rak', 'RakController');
-
-Route::resource('supplier', 'SupplierController');
 
 Auth::routes();
+Route::get('logout','Auth\LoginController@logout')->name('logout');
+Route::group(['middleware' => ['web','auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', function () {
+        if(Auth::user()->level == 1){
+            return view('admin.dashboard.mainAdmin');
+        } elseif(Auth::user()-> level == 2){
+            return view('admin.dashboard.mainUser');
+        } else{
+            echo 'Tidak ada akses';
+        }
+    });
+});
+Route::group(['middleware' => ['web','auth','level:1']], function () {
+    Route::resource('brand', 'BrandController');
+    Route::resource('category', 'CategoryController');
+    Route::resource('product', 'ProductController');
+    Route::resource('rak', 'RakController');
+    Route::resource('supplier', 'SupplierController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+});

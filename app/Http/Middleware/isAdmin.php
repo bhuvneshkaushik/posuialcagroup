@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+// use App\Http\Middleware\Auth;
+
 use Closure;
 
 class isAdmin
@@ -15,6 +17,9 @@ class isAdmin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(auth()->check() && $request->user()->level == 1){
+            return $next($request);
+        }
+        return redirect()->guest('/');
     }
 }

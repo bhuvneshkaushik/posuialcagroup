@@ -13,7 +13,11 @@
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
-    @include('admin.layouts.aside')
+    @if (Auth::user()->level == 1)
+        @include('admin.layouts.asideAdmin')
+    @elseif(Auth::user()->level == 2)
+        @include('admin.layouts.asideUser')
+    @endif
     <!-- /.sidebar -->
   </aside>
 
