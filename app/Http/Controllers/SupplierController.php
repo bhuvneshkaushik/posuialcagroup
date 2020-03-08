@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Supplier;
+// use App\Http\Controllers\Session;
 use Illuminate\Http\Request;
+use DB;
 
 class SupplierController extends Controller
 {
@@ -36,8 +38,43 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // echo 'HelloStoreSupplioer';
+        // dd($request->all());
+        $this->validate($request,[
+            'name' => 'required',
+            'address' => 'required',
+            'fax' => 'string',
+            'phone'=>'required',
+            'contact_person' => 'required',
+            'supplierCPHP' => 'required',
+            'status' => 'required'
+        ]);
+
+        $input = $request->all();
+        Supplier::create($input);
+
+        return redirect()->route('supplier.index')->with(['success'=>'Supplier'.$request->name .'Ditambahkan']);
+
+        // $s = new Supplier;
+        // $s->name = $request->input('name');
+        // $s->address = $request->input('address');
+        // $s->fax = $request->input('fax');
+        // $s->phone = $request->input('phone');
+        // $s->contact_person = $request->input('contact_person');
+        // $s->supplierCPHP = $request->input('supplierCPHP');
+        // $s->status = $request->input('status');
+        // // $s->save();
+        // if($s->save()){
+        //     return redirect()->route('supplier.index')->with(['success'=>'Supplier'. $request->name . 'Ditambahkan']);
+        // } else{
+        //     return redirect()->back()->with(['errors'=>'Supplier'. $request->name .'Failed']);
+
+        
     }
+
+        // dd($s);
+        // var_dump(s$s);
+        // return redirect()->route('supplier.index')->with(['success'=>'Supplier'. $request->name . 'Ditambahkan']);
 
     /**
      * Display the specified resource.

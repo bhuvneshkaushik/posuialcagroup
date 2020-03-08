@@ -18,7 +18,8 @@ class CreateSuppliersTable extends Migration
             $table->string('name', 100)->nullable();
             $table->text('address')->nullable();
             $table->string('fax', 12)->nullable();
-            $table->integer('phone')->nullable();
+            // $table->integer('phone')->nullable();
+            $table->string('phone', 12);
             $table->string('contact_person');
             $table->string('supplierCPHP');
             $table->string('status');

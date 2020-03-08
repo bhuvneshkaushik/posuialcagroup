@@ -66,7 +66,7 @@ class RakController extends Controller
      */
     public function show(Rak $rak)
     {
-        //
+        abort(404);
     }
 
     /**
