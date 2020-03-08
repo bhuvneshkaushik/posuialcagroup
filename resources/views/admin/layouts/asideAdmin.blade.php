@@ -14,7 +14,7 @@
   <ul class="sidebar-menu bg-default" data-widget="tree">
     <li class="header">MAIN NAVIGATION</li>
     <li class="active">
-      <a href="#">
+      <a href="{{url('/')}}">
         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
       </a>
     </li>
