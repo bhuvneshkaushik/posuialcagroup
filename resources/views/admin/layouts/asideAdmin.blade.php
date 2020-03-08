@@ -2,7 +2,7 @@
   <!-- Sidebar user panel -->
   <div class="user-panel">
     <div class="pull-left image">
-      <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+      <img src="{{URL::asset('asset/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
     </div>
     <div class="pull-left info">
     <p>{{ Auth::user()->name }}</p>
@@ -14,7 +14,7 @@
   <ul class="sidebar-menu bg-default" data-widget="tree">
     <li class="header">MAIN NAVIGATION</li>
     <li class="active">
-      <a href="#">
+      <a href="{{url('/')}}">
         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
       </a>
     </li>
@@ -27,6 +27,9 @@
       <a href="#">
         <i class="fa fa-files-o"></i>
         <span>Master Data Produk</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
       </a>
       <ul class="treeview-menu">
         <li><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i>Data Kategori</a></li>
@@ -40,17 +43,16 @@
     
     <li class="treeview">
       <a href="#">
-        <i class="fa fa-pie-chart"></i>
-        <span>Charts</span>
+        <i class="fa fa-files-o"></i>
+        <span>Transaksi Penjualan</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Morris</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Flot</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Transaksi</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
       </ul>
     </li#
   </ul>
