@@ -22,9 +22,11 @@ class CreateTableProducts extends Migration
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('supplier_id')->unsigned();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade')->onUpdate('cascade');
-            $table->tinyInteger('diskon');
-            $table->integer('price');
-            $table->tinyInteger('ppn');
+            $table->bigInteger('stock')->unsigned();
+            $table->string('barcode');
+            $table->string('diskon');
+            $table->string('price');
+            $table->string('ppn');
             $table->string('unit', 100)->nullable();
             $table->timestamps();
         });

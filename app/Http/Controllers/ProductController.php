@@ -34,8 +34,8 @@ class ProductController extends Controller
         $category = DB::table('categories')->where('status','=','y')->orderBy('id','DESC')->get();
         $supplier = DB::table('suppliers')->where('status','=','y')->orderBy('id','DESC')->get();
         $brands = DB::table('brands')->where('status','=','y')->orderBy('id','DESC')->get();
-        $units = ['Pcs','Buah','Kardus'];
-        return view('admin.product.create',compact('category','supplier','brands'));
+        $units = ['Pcs','Buah','Kardus','Kodi'];
+        return view('admin.product.create',compact('category','supplier','brands','units'));
     }
 
     /**
@@ -46,7 +46,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $this->validate([
+            'name' => 'required',
+            'category_id' => 'required',
+            'brand_id' => 'required',
+            'supplier_id' => 'required',
+            'stock'=>'required',
+            'barcode'
+        ]);
+        $input = $request->all();
+
+        
     }
 
     /**
