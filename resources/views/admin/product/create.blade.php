@@ -41,14 +41,34 @@
                 <div class="box-body">
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
-  
                     <div class="col-sm-10">
                       <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid':'' }}"  placeholder="product Name" required>
                     </div>
                   </div>
                   <div class="form-group">
+                    <label class="col-sm-2 control-label">Category</label>
+                    <div class="col-sm-10">
+                      @foreach ($category as $c )
+                      <select name="category_id" class="form-control">
+                          <option value="NULL">--Pilih--</option>
+                          <option value="{{ $c->id }}">{{ $c->name }}</option>
+                      </select>
+                      @endforeach   
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Category</label>
+                    <div class="col-sm-10">
+                      @foreach ($category as $c )
+                      <select name="category_id" class="form-control">
+                          <option value="NULL">--Pilih--</option>
+                          <option value="{{ $c->id }}">{{ $c->name }}</option>
+                      </select>
+                      @endforeach   
+                    </div>
+                  </div>
+                  <div class="form-group">
                     <label for="inputPassword3" name="status" class="col-sm-2 control-label">Status</label>
-  
                     <div class="col-sm-10">
                       <select name="status" required class="form-control {{ $errors->has('status') ? 'is-invalid' :'' }}">
                         <option value="0">--Pilih--</option>
@@ -66,7 +86,6 @@
               </form>
           @endcard
             </div>
-           
           </div>
     </section>
 @endsection
