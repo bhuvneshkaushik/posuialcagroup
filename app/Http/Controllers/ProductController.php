@@ -46,17 +46,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $this->validate([
             'name' => 'required',
             'category_id' => 'required',
             'brand_id' => 'required',
             'supplier_id' => 'required',
             'stock'=>'required',
-            'barcode'
+            'diskon' => 'required',
+            'price'=>'required',
+            'unit'=>'required',
+            'ppn'=>'required',
+            'harga_beli'=> 'required',
+            'harga_jual'=>'required',
+            'laba'=>'required'
         ]);
-        $input = $request->all();
 
+        // $d = new Products;
+        // $d->name = $request->name;
+        // $d->category_id = $request->category_id;
+
+        
         
     }
 

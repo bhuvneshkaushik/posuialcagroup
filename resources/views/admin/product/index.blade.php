@@ -42,7 +42,7 @@
               <th>Brand</th>
               <th>Supplier</th>
               <th>Price</th>
-              <th>Status</th>
+              <th>Stock</th>
               <th>Tools</th>
             </tr>
             </thead>
@@ -82,8 +82,12 @@
             <tfoot>
             <tr>
               <th>#</th>
-              <th>Name product</th>
-              <th>Status</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Brand</th>
+              <th>Supplier</th>
+              <th>Price</th>
+              <th>Stock</th>
               <th>Tools</th>
             </tr>
             </tfoot>

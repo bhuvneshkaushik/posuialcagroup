@@ -31,7 +31,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <div class="control-sidebar-bg"></div>
+  @include('admin.layouts.footer')
 </div>
 <!-- ./wrapper -->
 @include('admin.components.js')

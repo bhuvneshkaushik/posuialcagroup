@@ -245,7 +245,7 @@
 
 .skin-blue-light .user-panel>.info,
 .skin-blue-light .user-panel>.info>a {
-    color: #444
+    color: rgb(255, 255, 255)
 }
 
 .skin-blue-light .sidebar-menu>li {

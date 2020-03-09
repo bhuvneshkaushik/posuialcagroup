@@ -19,7 +19,7 @@
 
 @section('content')
     <section class="content">
-        <div class="col-md-8">
+        <div class="col-md-12">
           @card
               @slot('title')
                   Tambah
@@ -39,82 +39,65 @@
               <form class="form-horizontal" action="{{ route('product.store') }}" method="POST">
                 @csrf
                 <div class="box-body">
-                  <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid':'' }}"  placeholder="product Name" required>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Category</label>
-                    <div class="col-sm-10">
-                      
-                        <select name="category_id" class="form-control select2" required>
+                  <table class="table table-primary table-bordered col-md-8">
+                      <tr>
+                        <td>Name</td>
+                        <td><input type="text" name="name" class="form-control " required></td>
+                        <td>Category</td>
+                        <td><select name="category_id" class="form-control" required>
                           <option value="">&mdash;</option>
                           @foreach ($category as $c)
                               <option value="{{ $c->id }}">{{ $c->name }}</option>
+                          @endforeach  
+                        </select></td>
+                        <td>Supplier</td>
+                        <td>
+                        <select name="supplier_id" class="form-control" required>
+                          <option value="">&mdash;</option>
+                          @foreach ($supplier as $sup)
+                              <option value="{{ $sup->id }}">{{ $sup->name }}</option>
                           @endforeach
                         </select>
-                         
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Supplier</label>
-                    <div class="col-sm-10">
-                      <select name="supplier_id" class="form-control select2" required>
-                          <option value="NULL">&mdash;</option>
-                          @foreach ( $supplier as $s )
-                          <option value="{{ $s->id }}">{{ $s->name }}</option>
-                          @endforeach   
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Brand</label>
-                    <div class="col-sm-10">
-                      <select name="brand_id" class="form-control select2" required>
-                          <option value="NULL">&mdash;</option>
-                          @foreach ( $brands as $b )
-                          <option value="{{ $b->id }}">{{ $b->name }}</option>
-                          @endforeach   
-                      </select> 
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">Unit</label>
-                    <div class="col-sm-10">
-                      <select name="unit" class="form-control select2">
-                        <option value="">&mdash;</option>
-                        @foreach ($units as $uni)
-                            <option value="{{ $uni }}">{{ $uni }}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">Diskon</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="diskon" required class="form-control" placeholder="Diskon">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">Price</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="price" required class="form-control" placeholder="Price">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">PPN</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="ppn" required class="form-control" placeholder="PPN">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">Stock </label>
-                    <div class="col-sm-10">
-                      <input type="number" name="stock" class="form-control" required placeholder="Stock">
-                    </div>
-                  </div>
+                      </td>
+                      
+                      </tr>
+                      <tr>
+                        <td>Brand</td>
+                        <td>
+                          <select name="brand_id" class="form-control" required>
+                            <option value="">&mdash;</option>
+                            @foreach ($brands as $br)
+                                <option value="{{ $br->id }}">{{ $br->name }}</option>
+                            @endforeach
+                          </select>
+                        </td>
+                        <td>Unit</td>
+                        <td>
+                          <select name="unit" class="form-control" required>
+                            <option value="">&mdash;</option>
+                            @foreach ($units as $unit)
+                                <option value="{{ $unit }}">{{ $unit }}</option>
+                            @endforeach
+                          </select>
+                        </td>
+                        <td>Diskon</td>
+                        <td><input type="text" name="diskon" class="form-control" required></td>
+                      </tr>
+                      <tr>
+                        <td>Stock</td>
+                        <td><input type="number" name="stock" class="form-control" required></td>
+                        <td>Harga Beli</td>
+                        <td><input type="number" name="harga_beli" class="form-control"required></td>
+                        <td>Harga Jual</td>
+                        <td><input type="number" name="harga_jual" class="form-control" required></td>
+                      </tr>
+                      <tr>
+                        <td>Laba</td>
+                        <td><input type="number" name="laba" class="form-control" required></td>
+                        <td>PPN</td>
+                        <td><input type="number" name="ppn" class="form-control" required></td>
+                      </tr>
+                  </table>
                 </div>
               <div class="box-footer">
                 <a href="{{ route('product.index') }}" class="btn btn-warning"><i class="fa fa-backward"></i> Back</a>
