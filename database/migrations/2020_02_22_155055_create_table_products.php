@@ -23,6 +23,7 @@ class CreateTableProducts extends Migration
             $table->bigInteger('supplier_id')->unsigned();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade')->onUpdate('cascade');
             $table->tinyInteger('diskon');
+            $table->integer('price');
             $table->tinyInteger('ppn');
             $table->string('unit', 100)->nullable();
             $table->timestamps();

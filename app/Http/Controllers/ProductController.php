@@ -34,7 +34,7 @@ class ProductController extends Controller
         $category = DB::table('categories')->where('status','=','y')->get();
         $supplier = DB::table('suppliers')->where('status','=','y')->get();
         $units = ['Pcs','Buah','Kardus'];
-        return view('admin.supplier.create',compact('category','supplier'));
+        return view('admin.product.create',compact('category','supplier'));
     }
 
     /**
