@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('category','CategoryController@index');
 
 Auth::routes();
 Route::get('logout','Auth\LoginController@logout')->name('logout');
 Route::group(['middleware' => ['web','auth']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    // Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', function () {
         if(Auth::user()->level == 1){
             return view('admin.dashboard.mainAdmin');
@@ -31,6 +31,8 @@ Route::group(['middleware' => ['web','auth']], function () {
         }
     });
 });
+
+//Hak Akses Admin
 Route::group(['middleware' => ['web','auth','level:1']], function () {
     Route::resource('brand', 'BrandController');
     Route::resource('category', 'CategoryController');
