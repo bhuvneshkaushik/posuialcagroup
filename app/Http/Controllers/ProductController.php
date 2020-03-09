@@ -31,10 +31,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category = DB::table('categories')->where('status','=','y')->get();
-        $supplier = DB::table('suppliers')->where('status','=','y')->get();
+        $category = DB::table('categories')->where('status','=','y')->orderBy('id','DESC')->get();
+        $supplier = DB::table('suppliers')->where('status','=','y')->orderBy('id','DESC')->get();
+        $brands = DB::table('brands')->where('status','=','y')->orderBy('id','DESC')->get();
         $units = ['Pcs','Buah','Kardus'];
-        return view('admin.product.create',compact('category','supplier'));
+        return view('admin.product.create',compact('category','supplier','brands'));
     }
 
     /**
