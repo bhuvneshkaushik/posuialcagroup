@@ -11,10 +11,8 @@
 <!-- AdminLTE Skins. Choose a skin from the css/skins
      folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet" href="{{URL::asset('asset/dist/css/skins/_all-skins.min.css')}}">
-<!-- Morris chart -->
-<link rel="stylesheet" href="{{URL::asset('asset/bower_components/morris.js/morris.css')}}">
-<!-- jvectormap -->
-<link rel="stylesheet" href="{{URL::asset('asset/bower_components/jvectormap/jquery-jvectormap.css')}}">
+<link rel="stylesheet" href="{{URL::asset('asset/bower_components/select2/dist/css/select2.min.css')}}">
+
 <!-- Date Picker -->
 <link rel="stylesheet" href="{{URL::asset('asset/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
 <!-- Daterange picker -->

@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <div class="alert alert-danger">
+                        <div class="alert alert-info">
                             <p><span class="fa fa-fw fa-info-circle"></span>Selamat Datang {{ Auth::user()->name }}  <a style="color: #fff;font-weight: bold;border: 1px solid #fff;padding: 5px 10px;text-decoration: none;text-transform: uppercase;" href="#">Look &rarr;</a></p>
                         </div>
                     </div>
