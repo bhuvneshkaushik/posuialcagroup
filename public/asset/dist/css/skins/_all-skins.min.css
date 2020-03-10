@@ -1,5 +1,5 @@
 .skin-blue .main-header .navbar {
-    background-color: #f50b03
+    background-color: #093bc2
 }
 
 .skin-blue .main-header .navbar .nav>li>a {
@@ -245,7 +245,7 @@
 
 .skin-blue-light .user-panel>.info,
 .skin-blue-light .user-panel>.info>a {
-    color: #444
+    color: rgb(255, 255, 255)
 }
 
 .skin-blue-light .sidebar-menu>li {

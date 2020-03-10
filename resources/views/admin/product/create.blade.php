@@ -19,7 +19,7 @@
 
 @section('content')
     <section class="content">
-        <div class="col-md-8">
+        <div class="col-md-12">
           @card
               @slot('title')
                   Tambah
@@ -39,58 +39,65 @@
               <form class="form-horizontal" action="{{ route('product.store') }}" method="POST">
                 @csrf
                 <div class="box-body">
-                  <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid':'' }}"  placeholder="product Name" required>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Category</label>
-                    <div class="col-sm-10">
-                      
-                        <select name="category_id" class="form-control select2" required>
+                  <table class="table table-primary table-bordered col-md-8">
+                      <tr>
+                        <td>Name</td>
+                        <td><input type="text" name="name" class="form-control " required></td>
+                        <td>Category</td>
+                        <td><select name="category_id" class="form-control" required>
                           <option value="">&mdash;</option>
                           @foreach ($category as $c)
                               <option value="{{ $c->id }}">{{ $c->name }}</option>
+                          @endforeach  
+                        </select></td>
+                        <td>Supplier</td>
+                        <td>
+                        <select name="supplier_id" class="form-control" required>
+                          <option value="">&mdash;</option>
+                          @foreach ($supplier as $sup)
+                              <option value="{{ $sup->id }}">{{ $sup->name }}</option>
                           @endforeach
                         </select>
-                         
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Supplier</label>
-                    <div class="col-sm-10">
-                      <select name="category_id" class="form-control select2" required>
-                          <option value="NULL">&mdash;</option>
-                          @foreach ( $supplier as $s )
-                          <option value="{{ $s->id }}">{{ $s->name }}</option>
-                          @endforeach   
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Brand</label>
-                    <div class="col-sm-10">
-                      <select name="category_id" class="form-control select2" required>
-                          <option value="NULL">&mdash;</option>
-                          @foreach ( $brands as $b )
-                          <option value="{{ $b->id }}">{{ $b->name }}</option>
-                          @endforeach   
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputPassword3" name="status" class="col-sm-2 control-label">Status</label>
-                    <div class="col-sm-10">
-                      <select name="status" required class="form-control {{ $errors->has('status') ? 'is-invalid' :'' }}">
-                        <option value="0">--Pilih--</option>
-                        <option value="y">Y</option>
-                        <option value="n">N</option>
-                      </select>
-                    </div>
-                  </div>
-                  
+                      </td>
+                      
+                      </tr>
+                      <tr>
+                        <td>Brand</td>
+                        <td>
+                          <select name="brand_id" class="form-control" required>
+                            <option value="">&mdash;</option>
+                            @foreach ($brands as $br)
+                                <option value="{{ $br->id }}">{{ $br->name }}</option>
+                            @endforeach
+                          </select>
+                        </td>
+                        <td>Unit</td>
+                        <td>
+                          <select name="unit" class="form-control" required>
+                            <option value="">&mdash;</option>
+                            @foreach ($units as $unit)
+                                <option value="{{ $unit }}">{{ $unit }}</option>
+                            @endforeach
+                          </select>
+                        </td>
+                        <td>Diskon</td>
+                        <td><input type="text" name="diskon" class="form-control" required></td>
+                      </tr>
+                      <tr>
+                        <td>Stock</td>
+                        <td><input type="number" name="stock" class="form-control" required></td>
+                        <td>Harga Beli</td>
+                        <td><input type="number" name="harga_beli" class="form-control"required></td>
+                        <td>Harga Jual</td>
+                        <td><input type="number" name="harga_jual" class="form-control" required></td>
+                      </tr>
+                      <tr>
+                        <td>Laba</td>
+                        <td><input type="number" name="laba" class="form-control" required></td>
+                        <td>PPN</td>
+                        <td><input type="number" name="ppn" class="form-control" required></td>
+                      </tr>
+                  </table>
                 </div>
               <div class="box-footer">
                 <a href="{{ route('product.index') }}" class="btn btn-warning"><i class="fa fa-backward"></i> Back</a>
@@ -112,66 +119,6 @@
     //Initialize Select2 Elements
     $('.select2').select2()
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
-
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' }})
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-    //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
-    })
-
-    //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass   : 'iradio_minimal-blue'
-    })
-    //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass   : 'iradio_minimal-red'
-    })
-    //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass   : 'iradio_flat-green'
-    })
-
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    })
   })
 </script>
     

@@ -41,8 +41,9 @@
               <th>Category</th>
               <th>Brand</th>
               <th>Supplier</th>
-              <th>Price</th>
-              <th>Status</th>
+              <th>Harga Beli</th>
+              <th>Harga Jual</th>
+              <th>Stock</th>
               <th>Tools</th>
             </tr>
             </thead>
@@ -54,12 +55,12 @@
                   <tr>
                     <td>{{ $no }}</td>
                     <td>{{ $i->name }}</td>
-                    <td>@if ($i->status == 'y')
-                        <label class="btn btn-success">{{ $i->status }}</label>
-                       @else 
-                       <label class="btn btn-danger">{{ $i->status }}</label>
-                    @endif
-                      </td>
+                    <td>{{ $i->category->name }}</td>
+                    <td>{{ $i->brand->name }}</td>
+                    <td>{{ $i->supplier->name }}</td>
+                    <td>{{ $i->harga_beli }}</td>
+                    <td>{{ $i->harga_jual }}</td>
+                    <td>{{ $i->stock }}</td>
                     <td>
                       <form action="{{ route('product.destroy', $i->id) }}" method="POST">
                         @csrf
@@ -75,15 +76,20 @@
                   @endphp
               @empty
                   <tr>
-                    <td colspan="4" class="text-center">Tidak Ada Data</td>
+                    <td colspan="8" class="text-center">Tidak Ada Data</td>
                   </tr>
               @endforelse
             </tbody>
             <tfoot>
             <tr>
               <th>#</th>
-              <th>Name product</th>
-              <th>Status</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Brand</th>
+              <th>Supplier</th>
+              <th>Harga Beli</th>
+              <th>Harga Jual</th>
+              <th>Stock</th>
               <th>Tools</th>
             </tr>
             </tfoot>
