@@ -93,7 +93,7 @@ class ProductController extends Controller
      */
     public function show(r $r)
     {
-        //
+        \abort(404);
     }
 
     /**
