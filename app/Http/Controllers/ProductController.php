@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Products;
-use Validator; 
+// use Validator; 
 use DB;
 use App\Category;
 use App\Brand;
@@ -19,9 +19,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Products::all();
         
-        return view('admin.product.index',\compact('products'));
+        $d['products'] = Products::orderBy("id", "DESC")->get();
+        
+        return view('admin.product.index', $d);
     }
 
     /**
@@ -46,15 +47,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        $this->validate([
+        
+        $this->validate($request,[
             'name' => 'required',
             'category_id' => 'required',
             'brand_id' => 'required',
             'supplier_id' => 'required',
             'stock'=>'required',
             'diskon' => 'required',
-            'price'=>'required',
             'unit'=>'required',
             'ppn'=>'required',
             'harga_beli'=> 'required',
@@ -62,10 +62,25 @@ class ProductController extends Controller
             'laba'=>'required'
         ]);
 
-        // $d = new Products;
-        // $d->name = $request->name;
-        // $d->category_id = $request->category_id;
+        $d = new Products;
+        $d->name = $request->name;
+        $d->category_id = $request->category_id;
+        $d->supplier_id = $request->supplier_id;
+        $d->brand_id = $request->brand_id;
+        $d->stock = $request->stock; 
+        $d->diskon = $request->diskon;
+        $d->unit = $request->unit;
+        $d->ppn = $request->ppn;
+        $d->harga_beli = $request->harga_beli;
+        $d->harga_jual = $request->harga_jual;
+        $d->laba = $request->laba;
 
+        if($d->save()){
+            return \redirect()->route('product.index')->with(['success' => 'Product'. $request->input('name'). 'Ditambahkan']);
+        }else {
+            return \redirect()->back()->with(['error' => 'Product'. $request->input('name'). 'Failed']);
+
+        }
         
         
     }
