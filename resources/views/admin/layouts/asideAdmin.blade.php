@@ -37,7 +37,7 @@
         <li><a href="{{ route('rak.index') }}"><i class="fa fa-circle-o"></i>Data Rak</a></li>
         <li><a href="{{ route('supplier.index') }}"><i class="fa fa-circle-o"></i>Data Supplier</a></li>
         <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o"></i>Data Produk</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i>Data Pelanggan</a></li>
+        <li><a href="{{ route('member.index') }}"><i class="fa fa-circle-o"></i>Data Pelanggan</a></li>
       </ul>
     </li>
     
