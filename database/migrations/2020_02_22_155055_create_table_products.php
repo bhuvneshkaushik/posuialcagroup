@@ -22,12 +22,13 @@ class CreateTableProducts extends Migration
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('supplier_id')->unsigned();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('stock');
-            $table->string('diskon');
-            $table->string('harga_beli');
-            $table->string('harga_jual');
+            $table->integer('stock');
+            $table->integer('diskon');
+            $table->integer('harga_beli');
+            $table->integer('harga_jual');
             $table->string('laba')->nullable();
             $table->string('ppn')->nullable();
+            $table->date('expired_date')->nullable();
             $table->string('unit', 100)->nullable();
             $table->timestamps();
         });
