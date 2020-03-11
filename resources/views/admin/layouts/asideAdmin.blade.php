@@ -37,7 +37,7 @@
         <li><a href="{{ route('rak.index') }}"><i class="fa fa-circle-o"></i>Data Rak</a></li>
         <li><a href="{{ route('supplier.index') }}"><i class="fa fa-circle-o"></i>Data Supplier</a></li>
         <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o"></i>Data Produk</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i>Data Pelanggan</a></li>
+        <li><a href="{{ route('member.index') }}"><i class="fa fa-circle-o"></i>Data Pelanggan</a></li>
       </ul>
     </li>
     
@@ -58,18 +58,85 @@
     <li class="treeview">
       <a href="#">
         <i class="fa fa-money"></i>
-        <span>Sell</span>
+        <span>Pembelian</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
       <ul class="treeview-menu">
         <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Transaksi</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
       </ul>
     </li>
     <li class="treeview">
+      <a href="#">
+        <i class="fa fa-files-o"></i>
+        <span>Retur Produk</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Retur</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Retur</a></li>
+      </ul>
+    </li>
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-files-o"></i>
+        <span>Master Biaya</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="#"><i class="fa fa-circle-o"></i> Akun Biaya</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Pengeluaran Biaya</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Pengeluaran Biaya</a></li>
+      </ul>
+    </li>
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-files-o"></i>
+        <span>Stock Opname</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Stock Opname</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Cari StockOpname</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Cetak Produk</a></li>
+      </ul>
+    </li>
+    
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-files-o"></i>
+        <span>Cetak Price Tag</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="#"><i class="fa fa-circle-o"></i> Cetak Barcode</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Cetak Price Tag</a></li>
+      </ul>
+    </li>
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-files-o"></i>
+        <span>Kartu Hutan Dan Piutang</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li><a href="#"><i class="fa fa-circle-o"></i> Kartu Hutang</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Kartu Piutang</a></li>
+      </ul>
+    </li>
+    {{-- <li class="treeview">
       <a href="#">
         <i class="fa fa-files-o"></i>
         <span>Transaksi Penjualan</span>
@@ -82,103 +149,21 @@
         <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
       </ul>
-    </li>
+    </li> --}}
     <li class="treeview">
       <a href="#">
         <i class="fa fa-files-o"></i>
-        <span>Transaksi Penjualan</span>
+        <span>Laporan</span>
         <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
         </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Transaksi</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-files-o"></i>
-        <span>Transaksi Penjualan</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Transaksi</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-files-o"></i>
-        <span>Transaksi Penjualan</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Transaksi</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-files-o"></i>
-        <span>Transaksi Penjualan</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Transaksi</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-files-o"></i>
-        <span>Transaksi Penjualan</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Transaksi</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-files-o"></i>
-        <span>Transaksi Penjualan</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Transaksi</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
-      </ul>
-    </li>
-    <li class="treeview">
-      <a href="#">
-        <i class="fa fa-files-o"></i>
-        <span>Transaksi Penjualan</span>
-        <span class="pull-right-container">
-          <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li><a href="#"><i class="fa fa-circle-o"></i> Tambah Transaksi</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
-        <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Laporan Perioder</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Laporan Supplier</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Laporan Data Member</a></li>
+        <li><a href="#"><i class="fa fa-circle-o"></i> Laporan Data Produk</a></li>
+
       </ul>
     </li>
   </ul>

@@ -1,18 +1,18 @@
 @extends('admin.master')
 
 @section('title')
-    <title>product Page</title>
+    <title>Member Page</title>
 @endsection
 
 @section('content-header')
 <section class="content-header">
     <h1>
-      product  
+      Member 
       <small>Control panel</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Product</li>
+      <li class="active">Member</li>
     </ol>
 </section>
 
@@ -29,7 +29,7 @@
       @endif
       <div class="box">
         <div class="box-header">
-          <a href="{{ route('product.create') }}" class="btn btn-success">Add product</a>
+          <a href="{{ route('member.create') }}" class="btn btn-success">Add Member</a>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -37,14 +37,10 @@
             <thead>
             <tr>
               <th>#</th>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Brand</th>
-              <th>Supplier</th>
-              <th>Harga Beli</th>
-              <th>Harga Jual</th>
-              <th>Stock</th>
-              <th>Expired Date</th>
+              <th>Member Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>UserId</th>
               <th>Tools</th>
             </tr>
             </thead>
@@ -52,22 +48,18 @@
               @php
                 $no = 1;   
               @endphp
-              @forelse ($products as $i)
+              @forelse ($members as $i)
                   <tr>
                     <td>{{ $no }}</td>
                     <td>{{ $i->name }}</td>
-                    <td>{{ $i->category->name }}</td>
-                    <td>{{ $i->brand->name }}</td>
-                    <td>{{ $i->supplier->name }}</td>
-                    <td>{{ $i->harga_beli }}</td>
-                    <td>{{ $i->harga_jual }}</td>
-                    <td>{{ $i->stock }}</td>
-                    <td>{{ $i->expired_date }}</td>
+                    <td>{{ $i->address }}</td>
+                    <td>{{ $i->phone }}</td>
+                    <td>{{ $i->user->name }}</td>
                     <td>
-                      <form action="{{ route('product.destroy', $i->id) }}" method="POST">
+                      <form action="{{ route('member.destroy', $i->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE">
-                        <a href="{{route('product.edit', $i->id)}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
+                        <a href="{{route('member.edit', $i->id)}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
                         {{-- <a href="#" class="btn btn-info btn-sm" title="Show"><i class="fa fa-eye"></i></a> --}}
                         <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>
                       </form>
@@ -78,22 +70,18 @@
                   @endphp
               @empty
                   <tr>
-                    <td colspan="10" class="text-center">Tidak Ada Data</td>
+                    <td colspan="4" class="text-center">Tidak Ada Data</td>
                   </tr>
               @endforelse
             </tbody>
             <tfoot>
             <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Brand</th>
-              <th>Supplier</th>
-              <th>Harga Beli</th>
-              <th>Harga Jual</th>
-              <th>Stock</th>
-              <th>Expired Date</th>
-              <th>Tools</th>
+                <th>#</th>
+                <th>Member Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>UserId</th>
+                <th>Tools</th>
             </tr>
             </tfoot>
           </table>
