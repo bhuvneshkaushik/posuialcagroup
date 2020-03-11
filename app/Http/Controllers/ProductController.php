@@ -59,7 +59,8 @@ class ProductController extends Controller
             'ppn'=>'required',
             'harga_beli'=> 'required',
             'harga_jual'=>'required',
-            'laba'=>'required'
+            'laba'=>'required',
+            'expired_date' => 'required'
         ]);
 
         $d = new Products;
@@ -74,6 +75,7 @@ class ProductController extends Controller
         $d->harga_beli = $request->harga_beli;
         $d->harga_jual = $request->harga_jual;
         $d->laba = $request->laba;
+        $d->expired_date = $request->expired_date;
 
         if($d->save()){
             return \redirect()->route('product.index')->with(['success' => 'Product'. $request->input('name'). 'Ditambahkan']);
@@ -102,9 +104,10 @@ class ProductController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function edit(r $r)
+    public function edit($id)
     {
-        //
+        $products = Products::find($id);
+        return view('admin.product.edit', \compact('products'));
     }
 
     /**

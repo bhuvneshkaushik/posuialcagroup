@@ -96,6 +96,8 @@
                         <td><input type="number" name="laba" class="form-control" required></td>
                         <td>PPN</td>
                         <td><input type="number" name="ppn" class="form-control" required></td>
+                        <td>Expired Product</td>
+                        <td><input type="date" name="expired_date" class="form-control" required></td>
                       </tr>
                   </table>
                 </div>
