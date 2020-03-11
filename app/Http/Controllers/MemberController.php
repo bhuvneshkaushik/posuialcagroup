@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Member;
+use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class MemberController extends Controller
 {
@@ -15,6 +17,7 @@ class MemberController extends Controller
     public function index()
     {
         $m['members'] = Member::all();
+        $m['m'] = User::all();
         return view('admin.member.index', $m);
     }
 
@@ -36,7 +39,22 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required',
+            'address'=>'required',
+            'phone'=>'required'
+        ]);
+
+        $m = new Member;
+        $m->name = $request->name;
+        $m->address = $request->address;
+        $m->phone = $request->phone;
+        $m->user_id = Auth::user()->id;
+        if($m->save()){
+            return redirect()->route('member.index')->with(['success'=>'Member'. $request->name .'Ditambahkan']);
+        } else{
+            return \redirect()->back()->with(['errors'=>'Member'. $request->name .'Failed']);
+        }
     }
 
     /**

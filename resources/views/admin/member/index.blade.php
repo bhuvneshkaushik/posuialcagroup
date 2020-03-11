@@ -52,12 +52,9 @@
                   <tr>
                     <td>{{ $no }}</td>
                     <td>{{ $i->name }}</td>
-                    <td>@if ($i->status == 'y')
-                        <label class="btn btn-success">{{ $i->status }}</label>
-                       @else 
-                       <label class="btn btn-danger">{{ $i->status }}</label>
-                    @endif
-                      </td>
+                    <td>{{ $i->address }}</td>
+                    <td>{{ $i->phone }}</td>
+                    <td>{{ $i->user->name }}</td>
                     <td>
                       <form action="{{ route('member.destroy', $i->id) }}" method="POST">
                         @csrf
