@@ -82,7 +82,22 @@
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
-          </div>
+          </div><div class="row">
+            <div class="col-md-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informasi Toko</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="nav-tabs-custom mb-0">
+                            <ul class="nav nav-tabs store-15">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-info">

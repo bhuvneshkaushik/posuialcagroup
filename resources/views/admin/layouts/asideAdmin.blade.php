@@ -136,7 +136,7 @@
         <li><a href="#"><i class="fa fa-circle-o"></i> Kartu Piutang</a></li>
       </ul>
     </li>
-    <li class="treeview">
+    {{-- <li class="treeview">
       <a href="#">
         <i class="fa fa-files-o"></i>
         <span>Transaksi Penjualan</span>
@@ -149,7 +149,7 @@
         <li><a href="#"><i class="fa fa-circle-o"></i> Transaksi Pending</a></li>
         <li><a href="#"><i class="fa fa-circle-o"></i> Cari Transaksi</a></li>
       </ul>
-    </li>
+    </li> --}}
     <li class="treeview">
       <a href="#">
         <i class="fa fa-files-o"></i>

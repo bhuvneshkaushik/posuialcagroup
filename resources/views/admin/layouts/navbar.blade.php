@@ -28,7 +28,11 @@
 
               <p>
                 {{ Auth::user()->name }}
-                <small>{{ Auth::user()->level }}</small>
+                @if (Auth::user()->level =='1')
+                <small>Administrator</small>
+                @else
+                <small>Staff</small>
+                @endif
               </p>
             </li>
             <!-- Menu Body -->

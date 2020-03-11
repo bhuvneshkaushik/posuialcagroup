@@ -78,7 +78,7 @@
                   @endphp
               @empty
                   <tr>
-                    <td colspan="9" class="text-center">Tidak Ada Data</td>
+                    <td colspan="10" class="text-center">Tidak Ada Data</td>
                   </tr>
               @endforelse
             </tbody>
