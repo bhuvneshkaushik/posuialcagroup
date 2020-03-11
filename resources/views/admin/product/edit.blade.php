@@ -22,7 +22,7 @@
         <div class="col-md-12">
           @card
               @slot('title')
-                  Tambah {{ $products->id }}
+                  Tambah
               @endslot
 
               @if (session('error'))
@@ -36,20 +36,23 @@
               </div>
               <!-- /.box-header -->
               <!-- form start -->
-              <form class="form-horizontal" action="{{ route('product.update', $products->id) }}" method="POST">
+              <form class="form-horizontal" action="{{ route('product.update',$products->id) }}" method="POST">
                 @csrf
-            
-                <input type="hidden" name="_method" value="PUT">
+                @method('PUT')
                 <div class="box-body">
                   <table class="table table-primary table-bordered col-md-8">
                       <tr>
                         <td>Name</td>
-                        <td><input type="text" name="name" class="form-control " required></td>
+                        <td><input type="text" name="name" value="{{ $products->name }}" class="form-control " required></td>
                         <td>Category</td>
                         <td><select name="category_id" class="form-control" required>
                           <option value="">&mdash;</option>
                           @foreach ($category as $c)
-                              <option value="{{ $c->id }}">{{ $c->name }}</option>
+                              @if ($products->category_id == $c->id)
+                                <option value="{{ $c->id }}" selected>{{ $c->name }}</option>
+                              @else
+                                  
+                              @endif
                           @endforeach  
                         </select></td>
                         <td>Supplier</td>
@@ -57,7 +60,11 @@
                         <select name="supplier_id" class="form-control" required>
                           <option value="">&mdash;</option>
                           @foreach ($supplier as $sup)
+                              @if ($products->supplier_id == $sup->id)
+                              <option value="{{ $sup->id }}" selected>{{ $sup->name }}</option>
+                              @else
                               <option value="{{ $sup->id }}">{{ $sup->name }}</option>
+                              @endif
                           @endforeach
                         </select>
                       </td>
@@ -69,7 +76,11 @@
                           <select name="brand_id" class="form-control" required>
                             <option value="">&mdash;</option>
                             @foreach ($brands as $br)
-                                <option value="{{ $br->id }}">{{ $br->name }}</option>
+                                @if ($products->brand_id == $br->id)
+                                  <option value="{{ $br->id }}" selected>{{ $br->name }}</option>
+                                @else
+                                  <option value="{{ $br->id }}">{{ $br->name }}</option>
+                                @endif
                             @endforeach
                           </select>
                         </td>
@@ -83,21 +94,23 @@
                           </select>
                         </td>
                         <td>Diskon</td>
-                        <td><input type="text" name="diskon" class="form-control" required></td>
+                        <td><input type="text" name="diskon" value="{{ $products->diskon }}" class="form-control" required></td>
                       </tr>
                       <tr>
                         <td>Stock</td>
-                        <td><input type="number" name="stock" class="form-control" required></td>
+                        <td><input type="number" name="stock" value="{{ $products->stock }}" class="form-control" required></td>
                         <td>Harga Beli</td>
-                        <td><input type="number" name="harga_beli" class="form-control"required></td>
+                        <td><input type="number" name="harga_beli" value="{{ $products->harga_beli }}" class="form-control"required></td>
                         <td>Harga Jual</td>
-                        <td><input type="number" name="harga_jual" class="form-control" required></td>
+                        <td><input type="number" name="harga_jual" value="{{ $products->harga_jual }}" class="form-control" required></td>
                       </tr>
                       <tr>
                         <td>Laba</td>
-                        <td><input type="number" name="laba" class="form-control" required></td>
+                        <td><input type="number" name="laba" value="{{ $products->laba }}" class="form-control" required></td>
                         <td>PPN</td>
-                        <td><input type="number" name="ppn" class="form-control" required></td>
+                        <td><input type="number" name="ppn" value="{{ $products->ppn }}" class="form-control" required></td>
+                        <td>Expired Product</td>
+                        <td><input type="date" name="expired_date" value="{{ $products->expired_date }}" class="form-control" required></td>
                       </tr>
                   </table>
                 </div>

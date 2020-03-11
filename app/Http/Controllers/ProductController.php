@@ -21,7 +21,7 @@ class ProductController extends Controller
     {
         
         $d['products'] = Products::orderBy("id", "DESC")->get();
-        
+        $d['today'] = date('Y-m-d');
         return view('admin.product.index', $d);
     }
 
@@ -60,7 +60,7 @@ class ProductController extends Controller
             'harga_beli'=> 'required',
             'harga_jual'=>'required',
             'laba'=>'required',
-            'expired_date' => 'required'
+            'expired_date' => 'required|'
         ]);
 
         $d = new Products;
@@ -80,8 +80,7 @@ class ProductController extends Controller
         if($d->save()){
             return \redirect()->route('product.index')->with(['success' => 'Product'. $request->input('name'). 'Ditambahkan']);
         }else {
-            return \redirect()->back()->with(['error' => 'Product'. $request->input('name'). 'Failed']);
-
+            return \redirect()->back()->with(['errors' => 'Product'. $request->input('name'). 'Failed']);
         }
         
         
@@ -107,7 +106,11 @@ class ProductController extends Controller
     public function edit($id)
     {
         $products = Products::find($id);
-        return view('admin.product.edit', \compact('products'));
+        $category = DB::table('categories')->where('status','=','y')->orderBy('id','DESC')->get();
+        $supplier = DB::table('suppliers')->where('status','=','y')->orderBy('id','DESC')->get();
+        $brands = DB::table('brands')->where('status','=','y')->orderBy('id','DESC')->get();
+        $units = ['Pcs','Buah','Kardus','Kodi'];
+        return view('admin.product.edit', \compact('products','category','supplier','brands','units'));
     }
 
     /**
@@ -117,9 +120,29 @@ class ProductController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, r $r)
+    public function update(Request $request, $id)
     {
-        //
+        
+
+        $d = Products::find($id);
+        $d->name = $request->name;
+        $d->category_id = $request->category_id;
+        $d->supplier_id = $request->supplier_id;
+        $d->brand_id = $request->brand_id;
+        $d->stock = $request->stock; 
+        $d->diskon = $request->diskon;
+        $d->unit = $request->unit;
+        $d->ppn = $request->ppn;
+        $d->harga_beli = $request->harga_beli;
+        $d->harga_jual = $request->harga_jual;
+        $d->laba = $request->laba;
+        $d->expired_date = $request->expired_date;
+        // dd($d);
+        if($d->save()){
+            return redirect()->route('product.index')->with(['success' => 'Products'. $d->name .'Diubah']);
+        }else{
+            return \redirect()->back()->with(['errors'=>'Products'. $d->name .'Failed']);
+        }
     }
 
     /**
@@ -128,8 +151,13 @@ class ProductController extends Controller
      * @param  \App\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function destroy(r $r)
+    public function destroy($id)
     {
-        //
+        $products = Products::find($id);
+        if($products->delete()){
+            return redirect()->route('product.index')->with(['success'=>'Product'. $products->name .'Dihapus']);
+        } else{
+            return redirect()->back()->with(['errors'=>'Products'. $products->name . 'Failed']);
+        }
     }
 }

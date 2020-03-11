@@ -7,7 +7,7 @@
 @section('content-header')
 <section class="content-header">
     <h1>
-      product 
+      product  
       <small>Control panel</small>
     </h1>
     <ol class="breadcrumb">
@@ -44,6 +44,7 @@
               <th>Harga Beli</th>
               <th>Harga Jual</th>
               <th>Stock</th>
+              <th>Expired Date</th>
               <th>Tools</th>
             </tr>
             </thead>
@@ -61,6 +62,7 @@
                     <td>{{ $i->harga_beli }}</td>
                     <td>{{ $i->harga_jual }}</td>
                     <td>{{ $i->stock }}</td>
+                    <td>{{ $i->expired_date }}</td>
                     <td>
                       <form action="{{ route('product.destroy', $i->id) }}" method="POST">
                         @csrf
@@ -90,6 +92,7 @@
               <th>Harga Beli</th>
               <th>Harga Jual</th>
               <th>Stock</th>
+              <th>Expired Date</th>
               <th>Tools</th>
             </tr>
             </tfoot>
