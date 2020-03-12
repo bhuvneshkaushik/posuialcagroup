@@ -58,7 +58,7 @@
                     <td>
                       <form action="{{ route('member.destroy', $i->id) }}" method="POST">
                         @csrf
-                        <input type="hidden" name="_method" value="DELETE">
+                        @method('DELETE')
                         <a href="{{route('member.edit', $i->id)}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
                         {{-- <a href="#" class="btn btn-info btn-sm" title="Show"><i class="fa fa-eye"></i></a> --}}
                         <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>

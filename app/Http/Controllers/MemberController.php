@@ -66,6 +66,7 @@ class MemberController extends Controller
     public function show(Member $member)
     {
         //
+        \abort(404);
     }
 
     /**
@@ -74,9 +75,10 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function edit(Member $member)
+    public function edit($id)
     {
-        //
+        $members = Member::findOrfail($id);
+        return view('admin.member.edit', \compact('members'));
     }
 
     /**
@@ -86,9 +88,20 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, $id)
     {
-        //
+        try{
+            $m = Member::findOrfail($id);
+            $m->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'user_id' => Auth::user()->id
+            ]);
+            return redirect()->route('member.index')->with(['success'=>'Member'. $request->name .'Diubah']);
+        } catch(\Exception $e){
+            return redirect()->back()->with(['error'=> $e->getMessages()]);
+        }
     }
 
     /**
@@ -97,8 +110,15 @@ class MemberController extends Controller
      * @param  \App\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $member)
+    public function destroy($id)
     {
-        //
+        $members = Member::findOrfail($id);
+        if($members->delete()){
+            return redirect()->route('member.index')->with(['success'=>'Member'. $members->name . 'Dihapus']);
+
+        } else{
+            return redirect()->back()->with(['error'=>'Member'. $members->name . 'Failed']);
+        }
+        
     }
 }
