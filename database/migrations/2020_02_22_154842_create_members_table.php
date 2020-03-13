@@ -15,7 +15,7 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->bigIncrements('id');
-            // $table->string('memberCode');
+            $table->string('memberCode');
             $table->string('name', 100)->nullable()->default('text');
             $table->text('address')->nullable();
             $table->string('phone');

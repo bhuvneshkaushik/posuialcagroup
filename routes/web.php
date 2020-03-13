@@ -20,6 +20,7 @@
 Auth::routes();
 Route::get('logout','Auth\LoginController@logout')->name('logout');
 Route::group(['middleware' => ['web','auth']], function () {
+    Route::resource('informasi', 'InformasiTokoController');
     // Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', function () {
         if(Auth::user()->level == 1){
@@ -40,4 +41,5 @@ Route::group(['middleware' => ['web','auth','level:1']], function () {
     Route::resource('rak', 'RakController');
     Route::resource('supplier', 'SupplierController');
     Route::resource('member', 'MemberController');
+
 });

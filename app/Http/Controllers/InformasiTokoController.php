@@ -14,7 +14,9 @@ class InformasiTokoController extends Controller
      */
     public function index()
     {
-        //
+        //index part
+        $informasi  = InformasiToko::all();
+        return view('admin.informasiToko.index',\compact('informasi'));
     }
 
     /**

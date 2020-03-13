@@ -19,7 +19,12 @@
       </a>
     </li>
     <li>
-      <a href="#">
+        <a href="#">
+          <i class="fa fa-shopping-cart"></i><span>POS</span>
+        </a>
+    </li>
+    <li>
+      <a href="{{ route('informasi.index') }}">
         <i class="fa fa-th"></i> <span>Informasi Toko</span>
       </a>
     </li>
