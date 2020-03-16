@@ -18,6 +18,7 @@
 // Route::get('category','CategoryController@index');
 
 Auth::routes();
+Route::get('/front','FrontUserController@index');
 Route::get('logout','Auth\LoginController@logout')->name('logout');
 Route::group(['middleware' => ['web','auth']], function () {
     Route::resource('informasi', 'InformasiTokoController');
@@ -42,4 +43,6 @@ Route::group(['middleware' => ['web','auth','level:1']], function () {
     Route::resource('supplier', 'SupplierController');
     Route::resource('member', 'MemberController');
 
+    //================POS =====================//
+    Route::get('pos','PosController@index')->name('index');
 });
