@@ -70,32 +70,7 @@
                       </td>
                       
                       </tr>
-                      <tr>
-                        <td>Brand</td>
-                        <td>
-                          <select name="brand_id" class="form-control" required>
-                            <option value="">&mdash;</option>
-                            @foreach ($brands as $br)
-                                @if ($products->brand_id == $br->id)
-                                  <option value="{{ $br->id }}" selected>{{ $br->name }}</option>
-                                @else
-                                  <option value="{{ $br->id }}">{{ $br->name }}</option>
-                                @endif
-                            @endforeach
-                          </select>
-                        </td>
-                        <td>Unit</td>
-                        <td>
-                          <select name="unit" class="form-control" required>
-                            <option value="">&mdash;</option>
-                            @foreach ($units as $unit)
-                                <option value="{{ $unit }}">{{ $unit }}</option>
-                            @endforeach
-                          </select>
-                        </td>
-                        <td>Diskon</td>
-                        <td><input type="text" name="diskon" value="{{ $products->diskon }}" class="form-control" required></td>
-                      </tr>
+                      
                       <tr>
                         <td>Stock</td>
                         <td><input type="number" name="stock" value="{{ $products->stock }}" class="form-control" required></td>

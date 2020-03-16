@@ -27,8 +27,13 @@ class CategoryController extends Controller
     public function create()
     {
         //view create category
+        // $categoriesCode = Category::where('categoryCode');
+        // $categoryCode = Category::pluck('categoryCode');
+        // echo $categoryCode->categoryCode;
+        
         return view('admin.category.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,17 +48,24 @@ class CategoryController extends Controller
             'status' => 'nullable|string'
         ]);
 
+
+        // $category = Category::create([
+        //     'name' => $request->name,
+        //     'status' => $request->status
+        // ]); 
+
         try{
             $category = Category::firstOrCreate([
                 'name' => $request->name],
-                ['status' => $request->status]
+                ['status' => $request->status],
+                ['categoryCode'=>$request->categoryCode]
             );
+            // return view('admin.layouts.category',compac('category'));
+
             return redirect()->route('category.index')->with(['success' => 'Category'. $category->name . 'Ditambahkan']);
         } catch(\Exception $e){
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
-
-
     }
 
     /**

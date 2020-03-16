@@ -35,7 +35,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 
 //Hak Akses Admin
 Route::group(['middleware' => ['web','auth','level:1']], function () {
-    Route::resource('brand', 'BrandController');
+    // Route::resource('brand', 'BrandController');
     Route::resource('category', 'CategoryController');
     Route::resource('product', 'ProductController');
     Route::resource('rak', 'RakController');

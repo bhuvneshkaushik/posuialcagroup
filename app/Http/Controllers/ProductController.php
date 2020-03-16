@@ -6,7 +6,7 @@ use App\Products;
 // use Validator; 
 use DB;
 use App\Category;
-use App\Brand;
+// use App\Brand;
 use App\Supplier;
 use Illuminate\Http\Request;
 
@@ -34,9 +34,9 @@ class ProductController extends Controller
     {
         $category = DB::table('categories')->where('status','=','y')->orderBy('id','DESC')->get();
         $supplier = DB::table('suppliers')->where('status','=','y')->orderBy('id','DESC')->get();
-        $brands = DB::table('brands')->where('status','=','y')->orderBy('id','DESC')->get();
+        // $brands = DB::table('brands')->where('status','=','y')->orderBy('id','DESC')->get();
         $units = ['Pcs','Buah','Kardus','Kodi'];
-        return view('admin.product.create',compact('category','supplier','brands','units'));
+        return view('admin.product.create',compact('category','supplier','units'));
     }
 
     /**
@@ -51,7 +51,6 @@ class ProductController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'category_id' => 'required',
-            'brand_id' => 'required',
             'supplier_id' => 'required',
             'stock'=>'required',
             'diskon' => 'required',
@@ -67,7 +66,7 @@ class ProductController extends Controller
         $d->name = $request->name;
         $d->category_id = $request->category_id;
         $d->supplier_id = $request->supplier_id;
-        $d->brand_id = $request->brand_id;
+        // $d->brand_id = $request->brand_id;
         $d->stock = $request->stock; 
         $d->diskon = $request->diskon;
         $d->unit = $request->unit;
@@ -108,9 +107,9 @@ class ProductController extends Controller
         $products = Products::find($id);
         $category = DB::table('categories')->where('status','=','y')->orderBy('id','DESC')->get();
         $supplier = DB::table('suppliers')->where('status','=','y')->orderBy('id','DESC')->get();
-        $brands = DB::table('brands')->where('status','=','y')->orderBy('id','DESC')->get();
+        // $brands = DB::table('brands')->where('status','=','y')->orderBy('id','DESC')->get();
         $units = ['Pcs','Buah','Kardus','Kodi'];
-        return view('admin.product.edit', \compact('products','category','supplier','brands','units'));
+        return view('admin.product.edit', \compact('products','category','supplier','units'));
     }
 
     /**
@@ -128,7 +127,7 @@ class ProductController extends Controller
         $d->name = $request->name;
         $d->category_id = $request->category_id;
         $d->supplier_id = $request->supplier_id;
-        $d->brand_id = $request->brand_id;
+        // $d->brand_id = $request->brand_id;
         $d->stock = $request->stock; 
         $d->diskon = $request->diskon;
         $d->unit = $request->unit;
