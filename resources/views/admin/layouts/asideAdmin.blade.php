@@ -38,7 +38,7 @@
       </a>
       <ul class="treeview-menu">
         <li><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i>Data Kategori</a></li>
-        <li><a href="{{ route('brand.index') }}"><i class="fa fa-circle-o"></i>Data Brand</a></li>
+        {{-- <li><a href="{{ route('brand.index') }}"><i class="fa fa-circle-o"></i>Data Brand</a></li> --}}
         <li><a href="{{ route('rak.index') }}"><i class="fa fa-circle-o"></i>Data Rak</a></li>
         <li><a href="{{ route('supplier.index') }}"><i class="fa fa-circle-o"></i>Data Supplier</a></li>
         <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o"></i>Data Produk</a></li>

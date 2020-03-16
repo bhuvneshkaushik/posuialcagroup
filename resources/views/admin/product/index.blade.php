@@ -39,7 +39,7 @@
               <th>#</th>
               <th>Name</th>
               <th>Category</th>
-              <th>Brand</th>
+             
               <th>Supplier</th>
               <th>Harga Beli</th>
               <th>Harga Jual</th>
@@ -57,7 +57,7 @@
                     <td>{{ $no }}</td>
                     <td>{{ $i->name }}</td>
                     <td>{{ $i->category->name }}</td>
-                    <td>{{ $i->brand->name }}</td>
+                    
                     <td>{{ $i->supplier->name }}</td>
                     <td>{{ $i->harga_beli }}</td>
                     <td>{{ $i->harga_jual }}</td>
@@ -87,7 +87,7 @@
               <th>#</th>
               <th>Name</th>
               <th>Category</th>
-              <th>Brand</th>
+            
               <th>Supplier</th>
               <th>Harga Beli</th>
               <th>Harga Jual</th>

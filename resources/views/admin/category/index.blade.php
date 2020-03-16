@@ -37,6 +37,7 @@
             <thead>
             <tr>
               <th>#</th>
+              <th>Code</th>
               <th>category Name</th>
               <th>Status</th>
               <th>Tools</th>
@@ -49,6 +50,7 @@
               @forelse ($category as $i)
                   <tr>
                     <td>{{ $no }}</td>
+                    <td>{{ $i->categoryCode }}</td>
                     <td>{{ $i->name }}</td>
                     <td>@if ($i->status == 'y')
                         <label class="btn btn-success">{{ $i->status }}</label>
@@ -78,6 +80,7 @@
             <tfoot>
             <tr>
               <th>#</th>
+              <th>Code</th>
               <th>Name category</th>
               <th>Status</th>
               <th>Tools</th>
