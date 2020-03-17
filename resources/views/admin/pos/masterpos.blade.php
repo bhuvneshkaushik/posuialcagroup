@@ -28,6 +28,14 @@
       return i;
     }
   </script>
+  <style>
+     .bg {
+          background-color: white;
+          padding: 25px;
+          border: 5px solid #337ab7;
+          margin: 25px;
+      }
+  </style>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body onload="startTime()" class="hold-transition skin-blue layout-top-nav">
@@ -38,7 +46,7 @@
   </header>
   <!-- Full Width Column -->
   <div class="content-wrapper">
-    <div class="container">
+    <div class="container-fluid">
       <!-- Content Header (Page header) -->
       @yield('content-header')
 
