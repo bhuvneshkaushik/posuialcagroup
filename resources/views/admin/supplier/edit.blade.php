@@ -84,12 +84,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">SupplierCPHP</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="supplierCPHP" value="{{ $suppliers->supplierCPHP }}" class="form-control {{ $errors->has('supplierCPHP') ? 'is-invalid':'' }}"  placeholder="supplierCPHP" required>
-                    </div>
-                  </div>
+                  
 
                   <div class="form-group">
                     <label for="inputPassword3" name="status" class="col-sm-2 control-label">Status</label>

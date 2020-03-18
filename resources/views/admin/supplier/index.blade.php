@@ -36,6 +36,7 @@
                     <thead>
                     <tr>
                       <th>#</th>
+                      <th>Code</th>
                       <th>Name</th>
                       <th>Fax</th>
                       <th>Phone</th>
@@ -52,6 +53,7 @@
                       @forelse ($suppliers as $i)
                           <tr>
                             <td>{{ $no }}</td>
+                            <td>{{ $i->supplierCode }}</td>
                             <td>{{ $i->name }}</td>
                             <td>{{ $i->fax }}</td>
                             <td>{{ $i->phone }}</td>
