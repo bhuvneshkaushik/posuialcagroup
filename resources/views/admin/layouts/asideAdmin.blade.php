@@ -19,7 +19,7 @@
       </a>
     </li>
     <li>
-        <a href="#">
+        <a href="{{ url('pos') }}" target="_self">
           <i class="fa fa-shopping-cart"></i><span>POS</span>
         </a>
     </li>

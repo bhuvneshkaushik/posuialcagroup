@@ -54,7 +54,7 @@ class SupplierController extends Controller
         Supplier::create($input);
 
         return redirect()->route('supplier.index')->with(['success'=>'Supplier'.$request->name .'Ditambahkan']);
-
+            
         // $s = new Supplier;
         // $s->name = $request->input('name');
         // $s->address = $request->input('address');
