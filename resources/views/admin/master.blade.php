@@ -5,8 +5,37 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
    @yield('title')
    @include('admin.components.css') 
+   <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+   <style type="text/css">
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #ffff;
+    }
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font: 14px arial;
+    }
+    </style>
+   <script>
+    $(document).ready(function(){
+      $(".preloader").fadeOut(100);
+    });
+    </script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini" >
+    <div class="preloader">
+      <div class="loading">
+        <img src="{{asset('public/images/loading212.gif')}}" width="95%">
+      </div>
+    </div>
 <div class="wrapper">
 
   @include('admin.layouts.navbar')
@@ -34,6 +63,7 @@
   @include('admin.layouts.footer')
 </div>
 <!-- ./wrapper -->
+
 @include('admin.components.js')
 @yield('js-page')
 
