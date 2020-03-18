@@ -41,25 +41,24 @@
                 <div class="box-body">
                   <table class="table table-primary table-bordered col-md-8">
                       <tr>
-                        <td>Name</td>
-                        <td><input type="text" name="name" class="form-control " required></td>
-                        <td>Category</td>
-                        <td><select name="category_id" class="form-control" required>
-                          <option value="">&mdash;</option>
-                          @foreach ($category as $c)
-                              <option value="{{ $c->id }}">{{ $c->name }}</option>
-                          @endforeach  
-                        </select></td>
-                        <td>Supplier</td>
-                        <td>
-                        <select name="supplier_id" class="form-control" required>
-                          <option value="">&mdash;</option>
-                          @foreach ($supplier as $sup)
-                              <option value="{{ $sup->id }}">{{ $sup->name }}</option>
-                          @endforeach
-                        </select>
-                      </td>
-                      
+                          <td>Name</td>
+                          <td><input type="text" name="name" class="form-control " required></td>
+                          <td>Category</td>
+                          <td><select name="category_id" class="form-control" required>
+                            <option value="">&mdash;</option>
+                            @foreach ($category as $c)
+                                <option value="{{ $c->id }}">{{ $c->name }}</option>
+                            @endforeach  
+                          </select></td>
+                          <td>Supplier</td>
+                          <td>
+                          <select name="supplier_id" class="form-control" required>
+                            <option value="">&mdash;</option>
+                            @foreach ($supplier as $sup)
+                                <option value="{{ $sup->id }}">{{ $sup->name }}</option>
+                            @endforeach
+                          </select>
+                        </td>
                       </tr>
                       
                       <tr>
@@ -69,6 +68,10 @@
                         <td><input type="number" name="harga_beli" class="form-control"required></td>
                         <td>Harga Jual</td>
                         <td><input type="number" name="harga_jual" class="form-control" required></td>
+                      </tr>
+                      <tr>
+                        <td>Harga Jual 1</td>
+                        <td><input type="text" name="harga_jual" id=""></td>
                       </tr>
                       <tr>
                         <td>Laba</td>

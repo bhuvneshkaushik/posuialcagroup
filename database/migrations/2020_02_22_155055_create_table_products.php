@@ -16,6 +16,7 @@ class CreateTableProducts extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('productCode');
+            $table->string('no_sku');
             $table->string('name')->nullable();
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
@@ -26,12 +27,14 @@ class CreateTableProducts extends Migration
             $table->integer('diskon_2');
             $table->integer('diskon_3');
             $table->integer('harga_beli');
-            $table->integer('harga_jual');
+            $table->integer('harga_jual_1');
+            $table->integer('harga_jual_2');
+            $table->integer('harga_jual_3');
             $table->string('laba')->nullable();
             $table->string('ppn_beli')->nullable();
             $table->string('ppn_jual')->nullable();
             $table->date('expired_date')->nullable();
-            $table->string('satuan', 100)->nullable();
+            $table->string('satuan')->nullable();
             $table->timestamps();
         });
     }

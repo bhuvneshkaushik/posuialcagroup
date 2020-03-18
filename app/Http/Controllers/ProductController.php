@@ -59,7 +59,8 @@ class ProductController extends Controller
             'harga_beli'=> 'required',
             'harga_jual'=>'required',
             'laba'=>'required',
-            'expired_date' => 'required|'
+            'satuan'=>'required',
+            'expired_date' => 'required'
         ]);
 
         $d = new Products;
@@ -69,7 +70,7 @@ class ProductController extends Controller
         // $d->brand_id = $request->brand_id;
         $d->stock = $request->stock; 
         $d->diskon = $request->diskon;
-        $d->unit = $request->unit;
+        $d->satuan = $request->satuan;
         $d->ppn = $request->ppn;
         $d->harga_beli = $request->harga_beli;
         $d->harga_jual = $request->harga_jual;
