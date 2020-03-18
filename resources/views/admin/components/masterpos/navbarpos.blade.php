@@ -1,5 +1,5 @@
 <nav class="navbar navbar-static-top">
-    <div class="container">
+    <div class="container-fluid">
       <div class="navbar-header">
         <a href="../../index2.html" class="navbar-brand"><b>212</b>MART</a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
