@@ -64,12 +64,12 @@
                <table class="table table-bordered">
                  <thead>
                    <tr>
-                     <th>test</th>
+                     <th>#</th>
                    </tr>
                  </thead>
                  <tbody>
                    <tr>
-                     <td>test</td>
+                     <td>Nama</td>
                    </tr>
                  </tbody>
                </table>
@@ -97,37 +97,18 @@
             <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>tes</th>
-                    <th>tes</th>
-                    <th>tes</th>
-                    <th>tes</th>
-                    
+                    <th>#</th>
+                    <th>Nama</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>test</td>
-                  </tr>
-                </tbody>
             </table>
           </div>
           <div class="callout callout-danger">
             <h4><span class="glyphicon glyphicon-book"></span> Item Cart</h4>  
             <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>tes</th>
-                    <th>tes</th>
-                    <th>tes</th>
-                    <th>tes</th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>test</td>
-                  </tr>
-                </tbody>
+               <tr>
+                 <td></td>
+               </tr>
             </table>
           </div>
           <div class="callout callout-warning">
@@ -149,4 +130,9 @@
 </div>
 
 </section>
+@endsection
+
+@section('jsmasterpos')
+<script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
 @endsection
