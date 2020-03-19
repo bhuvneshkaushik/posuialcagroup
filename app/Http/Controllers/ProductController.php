@@ -49,31 +49,42 @@ class ProductController extends Controller
     {
         
         $this->validate($request,[
+            'no_sku'=>'required',
             'name' => 'required',
             'category_id' => 'required',
             'supplier_id' => 'required',
             'stock'=>'required',
-            'diskon' => 'required',
-            'unit'=>'required',
-            'ppn'=>'required',
+            'diskon_1' => 'required',
+            'diskon_2' => 'required',
+            'diskon_3' => 'required',
             'harga_beli'=> 'required',
-            'harga_jual'=>'required',
+            'harga_jual_1'=>'required',
+            'harga_jual_2'=>'required',
+            'harga_jual_3'=>'required',
+            'ppn_beli'=>'required',
+            'ppn_jual'=>'required',
             'laba'=>'required',
             'satuan'=>'required',
             'expired_date' => 'required'
         ]);
 
         $d = new Products;
+        $d->no_sku = $request->no_sku;
         $d->name = $request->name;
         $d->category_id = $request->category_id;
         $d->supplier_id = $request->supplier_id;
-        // $d->brand_id = $request->brand_id;
         $d->stock = $request->stock; 
         $d->diskon = $request->diskon;
+        $d->diskon_1 = $request->diskon_1;
+        $d->diskon_2 = $request->diskon_2;
+        $d->diskon_3 = $request->diskon_3;
         $d->satuan = $request->satuan;
-        $d->ppn = $request->ppn;
+        $d->ppn_beli = $request->ppn_beli;
+        $d->ppn_jual = $request->ppn_jual;
         $d->harga_beli = $request->harga_beli;
-        $d->harga_jual = $request->harga_jual;
+        $d->harga_jual_1 = $request->harga_jual_1;
+        $d->harga_jual_2 = $request->harga_jual_2;
+        $d->harga_jual_2 = $request->harga_jual_3;
         $d->laba = $request->laba;
         $d->expired_date = $request->expired_date;
 
