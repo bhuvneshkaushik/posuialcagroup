@@ -66,20 +66,45 @@
                         <td><input type="number" name="stock" class="form-control" required></td>
                         <td>Harga Beli</td>
                         <td><input type="number" name="harga_beli" class="form-control"required></td>
-                        <td>Harga Jual</td>
-                        <td><input type="number" name="harga_jual" class="form-control" required></td>
-                      </tr>
-                      <tr>
                         <td>Harga Jual 1</td>
-                        <td><input type="text" name="harga_jual" id=""></td>
+                        <td><input type="number" name="harga_jual_1" class="form-control" required></td>
                       </tr>
+                      
                       <tr>
-                        <td>Laba</td>
-                        <td><input type="number" name="laba" class="form-control" required></td>
-                        <td>PPN</td>
-                        <td><input type="number" name="ppn" class="form-control" required></td>
+                        <td>PPN Beli</td>
+                        <td><input type="number" name="ppn_beli" class="form-control" required></td>
                         <td>Expired Product</td>
                         <td><input type="date" name="expired_date" class="form-control" required></td>
+                        <td>Satuan</td>
+                        <td>
+                          <select name="satuan" class="form-control">Satuan
+                            <option value="0">&mdash;</option>
+                            @foreach ($units as $st)
+                              <option value="{{ $st }}">{{ $st }}</option>
+                            @endforeach
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>PPN Jual</td>
+                        <td><input type="number" name="ppn_jual" class="form-control"></td>
+                        <td>Harga Jual 2</td>
+                        <td><input type="number" name="harga_jual_2" class="form-control"></td>
+                        <td>SKU</td>
+                        <td><input type="number" name="no_sku" placeholder="NO SKU" class="form-control"></td>
+                      </tr>
+                      <tr>
+                        <td>Diskon 1</td>
+                        <td><input type="number" name="diskon_1" class="form-control"></td>
+                        <td>Diskon 2</td>
+                        <td><input type="number" name="diskon_2" class="form-control"></td>
+                        <td>Diskon 3</td>
+                        <td><input type="number" name="diskon_3" class="form-control"></td>
+                      </tr>
+                      <tr>
+                        <td>Harga Jual 3</td>
+                        <td><input type="number" name="harga_jual_3" class="form-control"></td>
+                        
                       </tr>
                   </table>
                 </div>

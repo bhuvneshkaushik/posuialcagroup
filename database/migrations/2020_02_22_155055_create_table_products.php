@@ -30,7 +30,6 @@ class CreateTableProducts extends Migration
             $table->integer('harga_jual_1');
             $table->integer('harga_jual_2');
             $table->integer('harga_jual_3');
-            $table->string('laba')->nullable();
             $table->string('ppn_beli')->nullable();
             $table->string('ppn_jual')->nullable();
             $table->date('expired_date')->nullable();
