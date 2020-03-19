@@ -17,6 +17,7 @@ class CreateSalesDetailTrxesTable extends Migration
             $table->bigIncrements('id');
             $table->string('detailCode')->nullable();
             $table->bigInteger('sales_trx_id')->unsigned();
+            // $table->foreign('sales_trx_id')->references('id')->on('sales_trxes');
             $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('Qty');

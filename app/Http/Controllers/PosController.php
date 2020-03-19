@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Pos;
+use App\Products;
+use App\Member;
 use Illuminate\Http\Request;
 
 class PosController extends Controller
@@ -14,8 +16,9 @@ class PosController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.pos.layouts.index');
+        $d['product'] = Products::orderBy('name','ASC')->get();
+        $d['member'] = Member::orderBy('name','ASC')->get();
+        return view('admin.pos.layouts.index', $d);
     }
 
     /**

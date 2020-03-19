@@ -28,7 +28,14 @@
           <h3 class="box-title">Cart</h3>
         </div>
         <!-- /.box-header -->
-        
+        <div class="box-body">
+          <table class="table table-danger table-bordered">
+            <tr>
+              <td>Tes</td>
+              <td>Tes</td>
+            </tr>
+          </table>
+        </div>
         <div class="box-body">
           
           <table class="table table-info table-bordered" style="border-collapse: collapse;">
@@ -92,35 +99,40 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <div class="callout callout-info">
-            <h4><span class="glyphicon glyphicon-object-align-left"></span> Product</h4>  
-            <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Nama</th>
-                  </tr>
-                </thead>
-            </table>
-          </div>
-          <div class="callout callout-danger">
-            <h4><span class="glyphicon glyphicon-book"></span> Item Cart</h4>  
-            <table class="table table-bordered">
-               <tr>
-                 <td></td>
-               </tr>
-            </table>
-          </div>
-          <div class="callout callout-warning">
-            <h4>I am a warning callout!</h4>
-
-            <p>This is a yellow callout.</p>
-          </div>
-          <div class="callout callout-success">
-            <h4>I am a success callout!</h4>
-
-            <p>This is a green callout.</p>
-          </div>
+          <form action="" method="POST">
+            <div class="row">
+              <table class="table ">
+                <tr>
+                  <td>Product :</td>
+                  <td><select name="product_id" id="" class="js-example-responsive form-control select2">
+                    <option value="null">&mdash;</option>
+                    @foreach ($product as $pr)
+                      <option value="{{ $pr->id }}">{{ $pr->name }} - {{$pr->productCode}}</option>
+                    @endforeach  
+                  </select> </td>
+                  
+                </tr>
+                <tr>
+                  <td>Qty</td>
+                  <td><input type="number" name="qty" id="" class="form-control" value="1"></td>
+                </tr>
+                <tr>
+                  <td>Member :</td>
+                  <td><select name="member_id" id="" class="js-example-responsive form-control select2">
+                    <option value="null">&mdash;</option>  
+                    @foreach ($member as $mb)
+                        <option value="{{ $mb->id }}">{{ $mb->name }} - {{ $mb->memberCode }}</option>
+                    @endforeach
+                  </select></td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-right"><button type="submit" class="btn btn-success"><span class="fa fa-flask"></span> Add</button></td>
+                </tr>
+              </table>
+              
+            </div>
+            
+          </form>
         </div>
         <!-- /.box-body -->
       </div>
@@ -133,6 +145,16 @@
 @endsection
 
 @section('jsmasterpos')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
+<script src="{{URL::asset('public/asset/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".js-example-responsive").select2({
+      width: 'resolve' // need to override the changed default
+    });
+    
+  })
+</script>
 @endsection
