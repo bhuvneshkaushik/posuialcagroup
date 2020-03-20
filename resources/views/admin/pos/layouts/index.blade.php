@@ -31,8 +31,16 @@
         <div class="box-body">
           <table class="table table-danger table-bordered">
             <tr>
-              <td>Tes</td>
-              <td>Tes</td>
+              <td>memberCode</td>
+              <td><input type="text" name="memberCode" class="form-control" value="" placeholder="memberCode"></td>
+            </tr>
+            <tr>
+              <td>Nama</td>
+              <td><input type="text" name="name" placeholder="Name" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>Hp</td>
+              <td><input type="text" name="phone" class="form-control" id=""></td>
             </tr>
           </table>
         </div>
@@ -99,7 +107,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form action="" method="POST">
+          <form action="" method="POST" enctype="multipart/form-data">
             <div class="row">
               <table class="table ">
                 <tr>
