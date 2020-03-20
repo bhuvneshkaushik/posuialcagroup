@@ -44,5 +44,8 @@ Route::group(['middleware' => ['web','auth','level:1']], function () {
     Route::resource('member', 'MemberController');
 
     //=====================POS=========================//
-    Route::get('pos','PosController@index')->name('index');
+    // Route::get('pos','PosController@index')->name('index');
+    Route::resource('pos', 'PosController');
+
+
 });

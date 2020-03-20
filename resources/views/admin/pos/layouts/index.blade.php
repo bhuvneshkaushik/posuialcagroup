@@ -30,18 +30,31 @@
         <!-- /.box-header -->
         <div class="box-body">
           <table class="table table-danger table-bordered">
+            @foreach ($cartMember as $cm)
+                
             <tr>
               <td>memberCode</td>
-              <td><input type="text" name="memberCode" class="form-control" value="" placeholder="memberCode"></td>
+              <td><input type="text" value="{{ $cm->member->memberCode }}"  name="memberCode" readonly class="form-control" value="" placeholder="memberCode"></td>
             </tr>
             <tr>
               <td>Nama</td>
-              <td><input type="text" name="name" placeholder="Name" class="form-control"></td>
+              <td><input type="text" value="{{ $cm->member->name }}" readonly  name="name" placeholder="Name" class="form-control"></td>
             </tr>
             <tr>
               <td>Hp</td>
-              <td><input type="text" name="phone" class="form-control" id=""></td>
+              <td><input type="text" name="phone" value="{{ $cm->member->phone }}" readonly placeholder="phone" class="form-control" id=""></td>
             </tr>
+           
+            <tr>
+              <td>Status</td>
+              <td><select name="status" class="form-control" style="width:30%">
+                <option value="null">&mdash;</option>  
+                @foreach ($status as $st)
+                    <option value="{{ $st }}">{{ $st }}</option>
+                @endforeach
+              </select></td>
+            </tr>
+            @endforeach
           </table>
         </div>
         <div class="box-body">
@@ -56,6 +69,7 @@
                   <th>Disc</th>
                   <th>ppn</th>
                   <th>Qty</th>
+                  <th>SubTotal</th>
                   <th>Tools</th>
                 </tr>
               </thead>
@@ -68,28 +82,40 @@
                   <td>4</td>
                   <td>4</td>
                   <td>4</td>
+                  <td>10000</td>
                   <td><a href="#" class="btn btn-info"><i class="fa fa-edit"></i></a>
                     <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="7" class="text-right">SubTotal:</th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">PPN(10%):</th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">Total Diskon:</th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">GrandTotal:</th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">Bayar / DP:</th>
+                  <th colspan="2"><input type="text" placeholder="Bayar" class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">&nbsp;</th>
+                  <th colspan="2"><button class="btn btn-warning"> <b>ADD Payment</b> </button></th>
+                </tr>
+              </tfoot>
           </table>
-          <div class="row">
-            <div class="box-body">
-               <table class="table table-bordered">
-                 <thead>
-                   <tr>
-                     <th>#</th>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   <tr>
-                     <td>Nama</td>
-                   </tr>
-                 </tbody>
-               </table>
-            </div>
-          </div>
+          
         </div>
         <!-- /.box-body -->
         <!-- Tambahan -->
@@ -107,7 +133,9 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form action="" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('pos.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('POST')
             <div class="row">
               <table class="table ">
                 <tr>
