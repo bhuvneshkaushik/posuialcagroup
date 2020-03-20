@@ -46,13 +46,13 @@ class SupplierController extends Controller
             'fax' => 'string',
             'phone'=>'required',
             'contact_person' => 'required',
-            'supplierCPHP' => 'required',
+            
             'status' => 'required'
         ]);
 
         $input = $request->all();
         Supplier::create($input);
-
+        // echo $input->supplierCode;
         return redirect()->route('supplier.index')->with(['success'=>'Supplier'.$request->name .'Ditambahkan']);
             
         // $s = new Supplier;
@@ -114,7 +114,7 @@ class SupplierController extends Controller
             'fax' => 'required',
             'phone'=>'required',
             'contact_person' => 'required',
-            'supplierCPHP' => 'required',
+           
             'status' => 'required'
         ]);
         try{
@@ -126,7 +126,7 @@ class SupplierController extends Controller
                 'fax'=> $request->fax,
                 'phone'=> $request->phone,
                 'contact_person'=> $request->contact_person,
-                'supplierCPHP' => $request->supplierCPHP,
+                
                 'status' => $request->status
             ]);
             return redirect()->route('supplier.index')->with(['success'=>'Supplier'. $request->name .'Diupdate']);

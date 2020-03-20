@@ -37,12 +37,10 @@
             <thead>
             <tr>
               <th>#</th>
+              <th>Product Code</th>
               <th>Name</th>
               <th>Category</th>
-             
               <th>Supplier</th>
-              <th>Harga Beli</th>
-              <th>Harga Jual</th>
               <th>Stock</th>
               <th>Expired Date</th>
               <th>Tools</th>
@@ -55,18 +53,19 @@
               @forelse ($products as $i)
                   <tr>
                     <td>{{ $no }}</td>
+                    <td>{{ $i->productCode }}</td>
                     <td>{{ $i->name }}</td>
                     <td>{{ $i->category->name }}</td>
                     
                     <td>{{ $i->supplier->name }}</td>
-                    <td>{{ $i->harga_beli }}</td>
-                    <td>{{ $i->harga_jual }}</td>
+                    
                     <td>{{ $i->stock }}</td>
                     <td>{{ $i->expired_date }}</td>
                     <td>
                       <form action="{{ route('product.destroy', $i->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="_method" value="DELETE">
+                        <a href="{{route('product.show' , $i->id)}}" class="btn btn-info btn-sm" title="Show"><i class="fa fa-eye"></i></a>
                         <a href="{{route('product.edit', $i->id)}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
                         {{-- <a href="#" class="btn btn-info btn-sm" title="Show"><i class="fa fa-eye"></i></a> --}}
                         <button type="submit" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></button>
@@ -85,12 +84,12 @@
             <tfoot>
             <tr>
               <th>#</th>
+              <th>Product Code</th>
               <th>Name</th>
               <th>Category</th>
             
               <th>Supplier</th>
-              <th>Harga Beli</th>
-              <th>Harga Jual</th>
+              
               <th>Stock</th>
               <th>Expired Date</th>
               <th>Tools</th>

@@ -28,7 +28,35 @@
           <h3 class="box-title">Cart</h3>
         </div>
         <!-- /.box-header -->
-        
+        <div class="box-body">
+          <table class="table table-danger table-bordered">
+            @foreach ($cartMember as $cm)
+                
+            <tr>
+              <td>memberCode</td>
+              <td><input type="text" value="{{ $cm->member->memberCode }}"  name="memberCode" readonly class="form-control" value="" placeholder="memberCode"></td>
+            </tr>
+            <tr>
+              <td>Nama</td>
+              <td><input type="text" value="{{ $cm->member->name }}" readonly  name="name" placeholder="Name" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>Hp</td>
+              <td><input type="text" name="phone" value="{{ $cm->member->phone }}" readonly placeholder="phone" class="form-control" id=""></td>
+            </tr>
+           
+            <tr>
+              <td>Status</td>
+              <td><select name="status" class="form-control" style="width:30%">
+                <option value="null">&mdash;</option>  
+                @foreach ($status as $st)
+                    <option value="{{ $st }}">{{ $st }}</option>
+                @endforeach
+              </select></td>
+            </tr>
+            @endforeach
+          </table>
+        </div>
         <div class="box-body">
           
           <table class="table table-info table-bordered" style="border-collapse: collapse;">
@@ -41,6 +69,7 @@
                   <th>Disc</th>
                   <th>ppn</th>
                   <th>Qty</th>
+                  <th>SubTotal</th>
                   <th>Tools</th>
                 </tr>
               </thead>
@@ -53,28 +82,40 @@
                   <td>4</td>
                   <td>4</td>
                   <td>4</td>
+                  <td>10000</td>
                   <td><a href="#" class="btn btn-info"><i class="fa fa-edit"></i></a>
                     <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="7" class="text-right">SubTotal:</th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">PPN(10%):</th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">Total Diskon:</th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">GrandTotal:</th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">Bayar / DP:</th>
+                  <th colspan="2"><input type="text" placeholder="Bayar" class="form-control" name="" id=""></th>
+                </tr>
+                <tr>
+                  <th colspan="7" class="text-right">&nbsp;</th>
+                  <th colspan="2"><button class="btn btn-warning"> <b>ADD Payment</b> </button></th>
+                </tr>
+              </tfoot>
           </table>
-          <div class="row">
-            <div class="box-body">
-               <table class="table table-bordered">
-                 <thead>
-                   <tr>
-                     <th>test</th>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   <tr>
-                     <td>test</td>
-                   </tr>
-                 </tbody>
-               </table>
-            </div>
-          </div>
+          
         </div>
         <!-- /.box-body -->
         <!-- Tambahan -->
@@ -92,54 +133,42 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <div class="callout callout-info">
-            <h4><span class="glyphicon glyphicon-object-align-left"></span> Product</h4>  
-            <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>tes</th>
-                    <th>tes</th>
-                    <th>tes</th>
-                    <th>tes</th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>test</td>
-                  </tr>
-                </tbody>
-            </table>
-          </div>
-          <div class="callout callout-danger">
-            <h4><span class="glyphicon glyphicon-book"></span> Item Cart</h4>  
-            <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>tes</th>
-                    <th>tes</th>
-                    <th>tes</th>
-                    <th>tes</th>
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>test</td>
-                  </tr>
-                </tbody>
-            </table>
-          </div>
-          <div class="callout callout-warning">
-            <h4>I am a warning callout!</h4>
-
-            <p>This is a yellow callout.</p>
-          </div>
-          <div class="callout callout-success">
-            <h4>I am a success callout!</h4>
-
-            <p>This is a green callout.</p>
-          </div>
+          <form action="{{ route('pos.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('POST')
+            <div class="row">
+              <table class="table ">
+                <tr>
+                  <td>Product :</td>
+                  <td><select name="product_id" id="" class="js-example-responsive form-control select2">
+                    <option value="null">&mdash;</option>
+                    @foreach ($product as $pr)
+                      <option value="{{ $pr->id }}">{{ $pr->name }} - {{$pr->productCode}}</option>
+                    @endforeach  
+                  </select> </td>
+                  
+                </tr>
+                <tr>
+                  <td>Qty</td>
+                  <td><input type="number" name="qty" id="" class="form-control" value="1"></td>
+                </tr>
+                <tr>
+                  <td>Member :</td>
+                  <td><select name="member_id" id="" class="js-example-responsive form-control select2">
+                    <option value="null">&mdash;</option>  
+                    @foreach ($member as $mb)
+                        <option value="{{ $mb->id }}">{{ $mb->name }} - {{ $mb->memberCode }}</option>
+                    @endforeach
+                  </select></td>
+                </tr>
+                <tr>
+                  <td colspan="2" class="text-right"><button type="submit" class="btn btn-success"><span class="fa fa-flask"></span> Add</button></td>
+                </tr>
+              </table>
+              
+            </div>
+            
+          </form>
         </div>
         <!-- /.box-body -->
       </div>
@@ -149,4 +178,19 @@
 </div>
 
 </section>
+@endsection
+
+@section('jsmasterpos')
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="{{URL::asset('public/asset/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".js-example-responsive").select2({
+      width: 'resolve' // need to override the changed default
+    });
+    
+  })
+</script>
 @endsection

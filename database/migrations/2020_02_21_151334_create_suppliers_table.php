@@ -22,7 +22,7 @@ class CreateSuppliersTable extends Migration
             // $table->integer('phone')->nullable();
             $table->string('phone', 12);
             $table->string('contact_person');
-            $table->string('supplierCPHP');
+            // $table->string('supplierCPHP');
             $table->string('status');
             $table->timestamps();
         });

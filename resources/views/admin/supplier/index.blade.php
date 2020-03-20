@@ -36,6 +36,7 @@
                     <thead>
                     <tr>
                       <th>#</th>
+                      <th>Code</th>
                       <th>Name</th>
                       <th>Fax</th>
                       <th>Phone</th>
@@ -52,6 +53,7 @@
                       @forelse ($suppliers as $i)
                           <tr>
                             <td>{{ $no }}</td>
+                            <td>{{ $i->supplierCode }}</td>
                             <td>{{ $i->name }}</td>
                             <td>{{ $i->fax }}</td>
                             <td>{{ $i->phone }}</td>
@@ -103,4 +105,24 @@
             <!-- /.col -->
         </div>
     </section>
+@endsection
+@section('js-page')
+<!-- DataTables -->
+<script src="{{URL::asset('public/asset/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('public/asset/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 @endsection
