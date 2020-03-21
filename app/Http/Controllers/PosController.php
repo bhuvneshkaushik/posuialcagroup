@@ -8,6 +8,7 @@ use App\Member;
 use App\User;
 use App\SalesTrx;
 use Illuminate\Support\Carbon;
+use App\SalesDetailTrx;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,11 @@ class PosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+
+    }
+
     public function index()
     {
         $d['product'] = Products::orderBy('name','ASC')->get();
@@ -25,11 +31,9 @@ class PosController extends Controller
         // $user_id = auth()->user()->id;
         // $user = User::find('user_id'); 
         // // $d['memberCart'] =  SalesTrx::find('member_id');
+        $d['saleDetail'] = SalesDetailTrx::where('user_id', \Auth::user()->id)->orderBy("id","DESC")->get();
         $d['cartMember'] = SalesTrx::where('user_id', \Auth::user()->id)->where('trxStatus', 1)->orderBy("id", "DESC")->get();
         $d['status'] = ['Termin', 'Pending','Cash'];
-
-        
-
         return view('admin.pos.layouts.index', $d);
     }
 
@@ -52,7 +56,19 @@ class PosController extends Controller
     public function store(Request $request)
     {
         $member = Member::find($request->member_id);
+        // $sdT = SalesTrx::find($request->id);
+        // // save SaleDetailTrx
+        // $product = Products::find($request->product_id);
+        // $p = New SalesDetailTrx;
+        // $p->product_id = $request->product_id;
+        // $p->Qty = $request->qty;
+        // $p->sales_trx_id = $request->id;
+        // $p->user_id = Auth::user()->id;
+        // $p->save();
+        // // dd($p);
+    
 
+        //save SalesTrx
         $m = New SalesTrx;
         $m->member_id = $request->member_id;
         $m->trx_at = Carbon::now();
@@ -67,7 +83,11 @@ class PosController extends Controller
         $m->user_id = Auth::user()->id;
 
         $m->save();
-        dd($m);
+        // dd($m);
+
+ 
+
+        return \redirect()->route('pos.index');
         // dd($m);
     }
 

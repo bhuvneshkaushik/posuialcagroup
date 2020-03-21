@@ -54,6 +54,7 @@
                 @endforeach
               </select></td>
             </tr>
+            
             @endforeach
           </table>
         </div>
@@ -74,19 +75,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mie</td>
-                  <td>2500</td>
-                  <td>4</td>
-                  <td>4</td>
-                  <td>4</td>
-                  <td>4</td>
-                  <td>10000</td>
-                  <td><a href="#" class="btn btn-info"><i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                  </td>
-                </tr>
+                @foreach ($saleDetail as $sd)
+                    <tr>
+                      <td>{{ $sd->product_id }}</td>
+                      <td>{{ $sd->harga_jual_1 }}</td>
+                    </tr>
+                @endforeach
               </tbody>
               <tfoot>
                 <tr>
@@ -133,26 +127,13 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          <form action="{{ route('pos.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('POST')
-            <div class="row">
-              <table class="table ">
-                <tr>
-                  <td>Product :</td>
-                  <td><select name="product_id" id="" class="js-example-responsive form-control select2">
-                    <option value="null">&mdash;</option>
-                    @foreach ($product as $pr)
-                      <option value="{{ $pr->id }}">{{ $pr->name }} - {{$pr->productCode}}</option>
-                    @endforeach  
-                  </select> </td>
-                  
-                </tr>
-                <tr>
-                  <td>Qty</td>
-                  <td><input type="number" name="qty" id="" class="form-control" value="1"></td>
-                </tr>
-                <tr>
+          
+          <div class="row">
+            <form action="{{ route('pos.store') }}" method="POST" enctype="multipart/form-data">
+              @csrf
+              @method('POST')
+              <table class="table table-bordered">
+                  <tr>
                   <td>Member :</td>
                   <td><select name="member_id" id="" class="js-example-responsive form-control select2">
                     <option value="null">&mdash;</option>  
@@ -165,10 +146,11 @@
                   <td colspan="2" class="text-right"><button type="submit" class="btn btn-success"><span class="fa fa-flask"></span> Add</button></td>
                 </tr>
               </table>
-              
-            </div>
-            
-          </form>
+            </form>
+          </div>
+        </div>
+        <div class="body">
+          
         </div>
         <!-- /.box-body -->
       </div>
