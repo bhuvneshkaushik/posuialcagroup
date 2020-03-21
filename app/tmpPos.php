@@ -14,4 +14,9 @@ class tmpPos extends Model
     {
         return $this->belongsTo('App\Products');
     }
+
+    public function member()
+    {
+        return $this->belongsTo('App\Member');
+    }
 }

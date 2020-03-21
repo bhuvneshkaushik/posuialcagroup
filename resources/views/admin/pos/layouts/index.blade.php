@@ -28,20 +28,20 @@
           <h3 class="box-title">Cart</h3>
         </div>
         <!-- /.box-header -->
-        {{-- <div class="box-body">
+        <div class="box-body">
           <table class="table table-danger table-bordered">
-            @foreach ($cartMember as $cm)
+            @foreach ($tmpPos as $tmp)
             <tr>
               <td>memberCode</td>
-              <td><input type="text" value="{{ $cm->member->memberCode }}"  name="memberCode" readonly class="form-control" value="" placeholder="memberCode"></td>
+              <td><input type="text" value="{{ $tmp->member->memberCode }}"  name="memberCode" readonly class="form-control" value="" placeholder="memberCode"></td>
             </tr>
             <tr>
               <td>Nama</td>
-              <td><input type="text" value="{{ $cm->member->name }}" readonly  name="name" placeholder="Name" class="form-control"></td>
+              <td><input type="text" value="{{ $tmp->member->name }}" readonly  name="name" placeholder="Name" class="form-control"></td>
             </tr>
             <tr>
               <td>Hp</td>
-              <td><input type="text" name="phone" value="{{ $cm->member->phone }}" readonly placeholder="phone" class="form-control" id=""></td>
+              <td><input type="text" name="phone" value="{{ $tmp->member->phone }}" readonly placeholder="phone" class="form-control" id=""></td>
             </tr>
            
             <tr>
@@ -56,7 +56,7 @@
             
             @endforeach
           </table>
-        </div> --}}
+        </div>
         <div class="box-body">
           <table class="table table-info table-bordered" style="border-collapse: collapse;">
               <thead>
@@ -68,7 +68,7 @@
                   <th>Disc</th>
                   <th>ppn</th>
                   <th>Qty</th>
-                 
+                  <th>SubTotal</th>
                   <th>Tools</th>
                 </tr>
               </thead>
@@ -82,6 +82,18 @@
                       <td>{{ $tp->product->diskon_1 }}</td>
                       <td>{{ $tp->product->ppn_jual }}</td>
                       <td>{{ $tp->qty }}</td>
+                      @php
+                          $hrg = \DB::table('products')->where('id',$tp->product_id)->value('harga_jual_1');
+                          $qty = $tp->qty;
+                          $sub = $hrg * $qty;
+                          $disc = ($tp->product->diskon_1 / 100) * $hrg;
+                          $ppn = $sub / 100 ;
+                          $gr = $sub + $ppn - $disc;
+                          // $total += $sub;
+                        @endphp
+                      <td>
+                        Rp. {{ number_format($sub,0) }}
+                      </td>
                       <td>
                         <form action="{{ route('pos.destroy', $tp->id) }}" method="POST">
                           @csrf
@@ -90,39 +102,36 @@
                         </form>
                       </td>
                     </tr>
-                @endforeach
+                
               </tbody>
-              {{-- <tfoot>
+              <tfoot>
                 <tr>
                   <th colspan="7" class="text-right">SubTotal:</th>
-                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="subTotal" value="{{ number_format($sub,0) }}" id=""></th>
                 </tr>
                 <tr>
                   <th colspan="7" class="text-right">PPN(10%):</th>
-                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="ppn" value="{{ number_format($ppn, 0) }}" id=""></th>
                 </tr>
                 <tr>
                   <th colspan="7" class="text-right">Total Diskon:</th>
-                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="diskon" value="{{ number_format($disc, 0) }}" id=""></th>
                 </tr>
                 <tr>
                   <th colspan="7" class="text-right">GrandTotal:</th>
-                  <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="grand_total" value="{{ number_format($gr, 0) }}" id=""></th>
                 </tr>
                 <tr>
                   <th colspan="7" class="text-right">Bayar / DP:</th>
                   <th colspan="2"><input type="text" placeholder="Bayar" class="form-control" name="" id=""></th>
                 </tr>
+                @endforeach
                 <tr>
                   <th colspan="7" class="text-right">&nbsp;</th>
                   <th colspan="2"><button class="btn btn-warning"> <b>ADD Payment</b> </button></th>
                 </tr>
-              </tfoot> --}}
-              <tfoot>
-                  {{-- <th colspan="8" class="text-right">                          
-                    <a href="{{ url('checkout.index', $tp->id) }}" class="btn btn-info">Checkout</a> 
-                  </th> --}}
               </tfoot>
+              
           </table>
           
         </div>
@@ -160,6 +169,17 @@
                 <tr>
                   <td>Qty</td>
                   <td><input type="number" name="qty" required class="form-control"></td>
+                </tr>
+                <tr>
+                  <td>Member:</td>
+                  <td>
+                    <select name="member_id" class="js-example-responsive form-control select2">
+                      <option value="null">&mdash;</option>
+                      @foreach ($member as $mbr)
+                          <option value="{{ $mbr->id }}">{{ $mbr->name }}- {{ $mbr->memberCode }}</option>
+                      @endforeach
+                    </select>
+                  </td>
                 </tr>
                 <tr>
                   <td colspan="2" class="text-right"><button type="submit" class="btn btn-success"><span class="fa fa-flask"></span> Add</button></td>

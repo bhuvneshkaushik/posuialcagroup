@@ -22,10 +22,7 @@ class PosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-
-    }
+   
 
     public function index()
     {
@@ -66,24 +63,31 @@ class PosController extends Controller
 
         $product_id = $request->product_id;
         $qty = $request->qty;
+        $member_id = $request->member_id;
 
         // $cek = count(\DB::table('tmp_pos')->where('product',$product_id)->where('qty',$qty)->get());
         $cek = count(DB::table('tmp_pos')->where('product_id', $product_id)->where('code', $code)->get());
-
+        $memberNow = DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->value('member_id');
+            DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->update([
+               'member_id' => $memberNow
+           ]);
         if($cek > 0){
             $qtyNow = \DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->value('qty');
             \DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->update([
     			'qty'=>$qtyNow+$qty
-    		]);
+            ]);
+            
+           
         }else {
             DB::table('tmp_pos')->insert([
                 'product_id' => $product_id,
                 'code'=>$code,
+                'member_id'=> $member_id,
                 'qty'=> $qty
             ]);
         }
+
         
-        // dd($m);
         return \redirect()->route('pos.index');
         // dd($m);
     }
@@ -98,7 +102,7 @@ class PosController extends Controller
      */
     public function show(Pos $pos)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -109,7 +113,7 @@ class PosController extends Controller
      */
     public function edit(Pos $pos)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -121,7 +125,7 @@ class PosController extends Controller
      */
     public function update(Request $request, Pos $pos)
     {
-        //
+        abort(404);
     }
 
     /**
