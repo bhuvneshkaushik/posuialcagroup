@@ -7,6 +7,9 @@ use App\Products;
 use App\Member;
 use App\User;
 use App\SalesTrx;
+use App\tmpPos;
+use DB;
+use Uuid;
 use Illuminate\Support\Carbon;
 use App\SalesDetailTrx;
 use Auth;
@@ -26,11 +29,15 @@ class PosController extends Controller
 
     public function index()
     {
+        $code= \DB::table('code')->where('code_id',1)->value('code');
+    	if($code == '0'){
+    		$code = Uuid::generate(4);
+    	}
         $d['product'] = Products::orderBy('name','ASC')->get();
         $d['member'] = Member::orderBy('name','ASC')->get();
-        $d['cartProduct'] = SalesTrx::where('user_id', \Auth::user()->id)->where('trxStatus', 1)->orderBy("id", "DESC")->get();
+        $d['tmpPos'] = tmpPos::orderBy("id", "DESC")->get();
         $d['status'] = ['Termin', 'Pending','Cash'];
-        return view('admin.pos.layouts.index', $d);
+        return view('admin.pos.layouts.index',\compact('code'), $d);
     }
 
     /**
@@ -49,43 +56,39 @@ class PosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $code)
     {
         // $member = Member::find($request->member_id);
-        // $sdT = SalesTrx::find($request->id);
-        // // save SaleDetailTrx
-        $product = Products::find($request->product_id);
-        $p = New SalesDetailTrx;
-        $p->product_id = $request->product_id;
-        $p->Qty = $request->qty;
-        $p->sales_trx_id = $request->id;
-        $p->user_id = Auth::user()->id;
-        $p->save();
-        // // dd($p);
-    
+        
+        \DB::table('code')->where('code_id',1)->update([
+    		'code'=>$code,
+    	]);
 
-        //save SalesTrx
-        $m = New SalesTrx;
-        $m->member_id = $request->member_id;
-        $m->trx_at = Carbon::now();
-        // $m->trxTotalModal = 0;
-        // $m->trxsubTotal =  0;
-        // $m->trxTotal = 0;
-        // $m->trxPPN = 0;
-        // $m->trxDiscount =0;
-        $m->trxStatus = 1;
-        // $m->trxChange = null;
-        $m->termin_at = Carbon::now();
-        $m->user_id = Auth::user()->id;
+        $product_id = $request->product_id;
+        $qty = $request->qty;
 
-        $m->save();
+        // $cek = count(\DB::table('tmp_pos')->where('product',$product_id)->where('qty',$qty)->get());
+        $cek = count(DB::table('tmp_pos')->where('product_id', $product_id)->where('code', $code)->get());
+
+        if($cek > 0){
+            $qtyNow = \DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->value('qty');
+            \DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->update([
+    			'qty'=>$qtyNow+$qty
+    		]);
+        }else {
+            DB::table('tmp_pos')->insert([
+                'product_id' => $product_id,
+                'code'=>$code,
+                'qty'=> $qty
+            ]);
+        }
+        
         // dd($m);
-
- 
-
         return \redirect()->route('pos.index');
         // dd($m);
     }
+
+
 
     /**
      * Display the specified resource.
@@ -127,8 +130,12 @@ class PosController extends Controller
      * @param  \App\Pos  $pos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pos $pos)
+    public function destroy($id)
     {
-        //
+        $tmp = tmpPos::find($id);
+        $tmp->delete();
+        return redirect()->route('pos.index');   
     }
+
+    
 }

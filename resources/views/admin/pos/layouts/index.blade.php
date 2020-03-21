@@ -68,14 +68,31 @@
                   <th>Disc</th>
                   <th>ppn</th>
                   <th>Qty</th>
-                  <th>SubTotal</th>
+                 
                   <th>Tools</th>
                 </tr>
               </thead>
               <tbody>
-                
+                @foreach ($tmpPos as $tp)
+                    <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>{{ $tp->product->name }}</td>
+                      <td>{{ $tp->product->harga_jual_1 }}</td>
+                      <td>{{ $tp->product->satuan }}</td>
+                      <td>{{ $tp->product->diskon_1 }}</td>
+                      <td>{{ $tp->product->ppn_jual }}</td>
+                      <td>{{ $tp->qty }}</td>
+                      <td>
+                        <form action="{{ route('pos.destroy', $tp->id) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-sm btn-danger" title="Delete"><i class="fa fa-trash"></i></button>
+                        </form>
+                      </td>
+                    </tr>
+                @endforeach
               </tbody>
-              <tfoot>
+              {{-- <tfoot>
                 <tr>
                   <th colspan="7" class="text-right">SubTotal:</th>
                   <th colspan="2"><input type="text" readonly class="form-control" name="" id=""></th>
@@ -100,6 +117,11 @@
                   <th colspan="7" class="text-right">&nbsp;</th>
                   <th colspan="2"><button class="btn btn-warning"> <b>ADD Payment</b> </button></th>
                 </tr>
+              </tfoot> --}}
+              <tfoot>
+                  {{-- <th colspan="8" class="text-right">                          
+                    <a href="{{ url('checkout.index', $tp->id) }}" class="btn btn-info">Checkout</a> 
+                  </th> --}}
               </tfoot>
           </table>
           
@@ -122,18 +144,22 @@
         <div class="box-body">
           
           <div class="row">
-            <form action="{{ route('pos.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('submit/'.$code)}}" method="POST" enctype="multipart/form-data">
               @csrf
               @method('POST')
               <table class="table table-bordered">
                   <tr>
-                  <td>Member :</td>
-                  <td><select name="member_id" id="" class="js-example-responsive form-control select2">
+                  <td>Product :</td>
+                  <td><select name="product_id" id="" class="js-example-responsive form-control select2">
                     <option value="null">&mdash;</option>  
                     @foreach ($product as $pr)
-                        <option value="{{ $pr->id }}">{{ $pr->name }} - {{ $mb->memberCode }}</option>
+                        <option value="{{ $pr->id }}">{{ $pr->name }} - {{ $pr->productCode }}</option>
                     @endforeach
                   </select></td>
+                </tr>
+                <tr>
+                  <td>Qty</td>
+                  <td><input type="number" name="qty" required class="form-control"></td>
                 </tr>
                 <tr>
                   <td colspan="2" class="text-right"><button type="submit" class="btn btn-success"><span class="fa fa-flask"></span> Add</button></td>

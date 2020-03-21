@@ -46,6 +46,7 @@ Route::group(['middleware' => ['web','auth','level:1']], function () {
     //=====================POS=========================//
     // Route::get('pos','PosController@index')->name('index');
     Route::resource('pos', 'PosController');
-
+    Route::post('submit/{code}', 'PosController@store' );
+    Route::get('checkout.index','CheckOutController@index');
 
 });
