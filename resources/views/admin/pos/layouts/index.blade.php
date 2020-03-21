@@ -28,10 +28,9 @@
           <h3 class="box-title">Cart</h3>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
+        {{-- <div class="box-body">
           <table class="table table-danger table-bordered">
             @foreach ($cartMember as $cm)
-                
             <tr>
               <td>memberCode</td>
               <td><input type="text" value="{{ $cm->member->memberCode }}"  name="memberCode" readonly class="form-control" value="" placeholder="memberCode"></td>
@@ -57,9 +56,8 @@
             
             @endforeach
           </table>
-        </div>
+        </div> --}}
         <div class="box-body">
-          
           <table class="table table-info table-bordered" style="border-collapse: collapse;">
               <thead>
                 <tr>
@@ -75,12 +73,7 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($saleDetail as $sd)
-                    <tr>
-                      <td>{{ $sd->product_id }}</td>
-                      <td>{{ $sd->harga_jual_1 }}</td>
-                    </tr>
-                @endforeach
+                
               </tbody>
               <tfoot>
                 <tr>
@@ -137,8 +130,8 @@
                   <td>Member :</td>
                   <td><select name="member_id" id="" class="js-example-responsive form-control select2">
                     <option value="null">&mdash;</option>  
-                    @foreach ($member as $mb)
-                        <option value="{{ $mb->id }}">{{ $mb->name }} - {{ $mb->memberCode }}</option>
+                    @foreach ($product as $pr)
+                        <option value="{{ $pr->id }}">{{ $pr->name }} - {{ $mb->memberCode }}</option>
                     @endforeach
                   </select></td>
                 </tr>

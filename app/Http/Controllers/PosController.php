@@ -28,11 +28,7 @@ class PosController extends Controller
     {
         $d['product'] = Products::orderBy('name','ASC')->get();
         $d['member'] = Member::orderBy('name','ASC')->get();
-        // $user_id = auth()->user()->id;
-        // $user = User::find('user_id'); 
-        // // $d['memberCart'] =  SalesTrx::find('member_id');
-        $d['saleDetail'] = SalesDetailTrx::where('user_id', \Auth::user()->id)->orderBy("id","DESC")->get();
-        $d['cartMember'] = SalesTrx::where('user_id', \Auth::user()->id)->where('trxStatus', 1)->orderBy("id", "DESC")->get();
+        $d['cartProduct'] = SalesTrx::where('user_id', \Auth::user()->id)->where('trxStatus', 1)->orderBy("id", "DESC")->get();
         $d['status'] = ['Termin', 'Pending','Cash'];
         return view('admin.pos.layouts.index', $d);
     }
@@ -55,16 +51,16 @@ class PosController extends Controller
      */
     public function store(Request $request)
     {
-        $member = Member::find($request->member_id);
+        // $member = Member::find($request->member_id);
         // $sdT = SalesTrx::find($request->id);
         // // save SaleDetailTrx
-        // $product = Products::find($request->product_id);
-        // $p = New SalesDetailTrx;
-        // $p->product_id = $request->product_id;
-        // $p->Qty = $request->qty;
-        // $p->sales_trx_id = $request->id;
-        // $p->user_id = Auth::user()->id;
-        // $p->save();
+        $product = Products::find($request->product_id);
+        $p = New SalesDetailTrx;
+        $p->product_id = $request->product_id;
+        $p->Qty = $request->qty;
+        $p->sales_trx_id = $request->id;
+        $p->user_id = Auth::user()->id;
+        $p->save();
         // // dd($p);
     
 

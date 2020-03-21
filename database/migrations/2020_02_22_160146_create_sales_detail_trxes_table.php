@@ -18,8 +18,8 @@ class CreateSalesDetailTrxesTable extends Migration
             // $table->string('detailCode')->nullable();
             $table->bigInteger('sales_trx_id')->unsigned();
             // $table->foreign('sales_trx_id')->references('id')->on('sales_trxes');
-            $table->bigInteger('product_id')->unsigned();
-            $table->foreign('member_id')->references('id')->on('products')->onDelete('cascade');
+            $table->bigInteger('member_id')->unsigned();
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->integer('Qty');
             // $table->integer('detailPrice');
             // $table->integer('dicTotal');

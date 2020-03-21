@@ -16,8 +16,8 @@ class CreateSalesTrxesTable extends Migration
         Schema::create('sales_trxes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('saleCode');
-            $table->bigInteger('member_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('members')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->date('trx_at')->nullable();
