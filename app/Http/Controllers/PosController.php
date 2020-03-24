@@ -32,7 +32,7 @@ class PosController extends Controller
     	}
         $d['product'] = Products::orderBy('name','ASC')->get();
         $d['member'] = Member::orderBy('name','ASC')->get();
-        $d['tmpPos'] = tmpPos::orderBy("id", "DESC")->get();
+        $d['tmpPos'] = tmpPos::where('code', $code)->orderBy("id", "DESC")->get();
         $d['status'] = ['Termin', 'Pending','Cash'];
         return view('admin.pos.layouts.index',\compact('code'), $d);
     }
@@ -53,6 +53,7 @@ class PosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request, $code)
     {
         // $member = Member::find($request->member_id);
@@ -67,14 +68,12 @@ class PosController extends Controller
 
         // $cek = count(\DB::table('tmp_pos')->where('product',$product_id)->where('qty',$qty)->get());
         $cek = count(DB::table('tmp_pos')->where('product_id', $product_id)->where('code', $code)->get());
-        $memberNow = DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->value('member_id');
-            DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->update([
-               'member_id' => $memberNow
-           ]);
+       
         if($cek > 0){
             $qtyNow = \DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->value('qty');
             \DB::table('tmp_pos')->where('product_id',$product_id)->where('code',$code)->update([
-    			'qty'=>$qtyNow+$qty
+                'qty'=>$qtyNow+$qty
+                
             ]);
             
            
@@ -82,7 +81,7 @@ class PosController extends Controller
             DB::table('tmp_pos')->insert([
                 'product_id' => $product_id,
                 'code'=>$code,
-                'member_id'=> $member_id,
+                
                 'qty'=> $qty
             ]);
         }
@@ -92,7 +91,14 @@ class PosController extends Controller
         // dd($m);
     }
 
+    public function selesai(Request $request, $code, $total){
+        $bayar = $request->bayar; 
+        $dataTmp = DB::table('tmp_pos')->where('code',$code)->get();
 
+        foreach ($data as $key => $dt) {
+            
+        }
+    }
 
     /**
      * Display the specified resource.

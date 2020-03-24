@@ -28,7 +28,7 @@
           <h3 class="box-title">Cart</h3>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
+        {{-- <div class="box-body">
           <table class="table table-danger table-bordered">
             @foreach ($tmpPos as $tmp)
             <tr>
@@ -43,7 +43,7 @@
               <td>Hp</td>
               <td><input type="text" name="phone" value="{{ $tmp->member->phone }}" readonly placeholder="phone" class="form-control" id=""></td>
             </tr>
-           
+            @endforeach
             <tr>
               <td>Status</td>
               <td><select name="status" class="form-control" style="width:30%">
@@ -54,11 +54,17 @@
               </select></td>
             </tr>
             
-            @endforeach
+            
           </table>
-        </div>
+        </div> --}}
         <div class="box-body">
-          <table class="table table-info table-bordered" style="border-collapse: collapse;">
+          <form action="{{ url('selesai/'.$code) }}" method="post">
+            @csrf
+            @method('POST')
+            <table class="table table-bordered">
+
+            </table>
+            <table class="table table-info table-bordered" style="border-collapse: collapse;">
               <thead>
                 <tr>
                   <th>#</th>
@@ -73,6 +79,9 @@
                 </tr>
               </thead>
               <tbody>
+                @php
+                  $data = DB::table('tmp_pos')->where('code', $code)->get();  
+                @endphp
                 @foreach ($tmpPos as $tp)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
@@ -102,30 +111,30 @@
                         </form>
                       </td>
                     </tr>
-                
+                    @endforeach
               </tbody>
               <tfoot>
                 <tr>
                   <th colspan="7" class="text-right">SubTotal:</th>
-                  <th colspan="2"><input type="text" readonly class="form-control" name="subTotal" value="{{ number_format($sub,0) }}" id=""></th>
+                  <th colspan="2"><input type="text" readonly class="form-control" name="subTotal" value="" id=""></th>
                 </tr>
                 <tr>
                   <th colspan="7" class="text-right">PPN(10%):</th>
-                  <th colspan="2"><input type="text" readonly class="form-control" name="ppn" value="{{ number_format($ppn, 0) }}" id=""></th>
+                  <th colspan="2"><input type="text" name="ppn" readonly class="form-control"  value="" id=""></th>
                 </tr>
                 <tr>
                   <th colspan="7" class="text-right">Total Diskon:</th>
-                  <th colspan="2"><input type="text" readonly class="form-control" name="diskon" value="{{ number_format($disc, 0) }}" id=""></th>
+                  <th colspan="2"><input type="text" name="total_diskon" readonly class="form-control" name="diskon" value="" id=""></th>
                 </tr>
                 <tr>
                   <th colspan="7" class="text-right">GrandTotal:</th>
-                  <th colspan="2"><input type="text" readonly class="form-control" name="grand_total" value="{{ number_format($gr, 0) }}" id=""></th>
+                  <th colspan="2"><input type="text"  readonly class="form-control" name="grand_total" value="" id=""></th>
                 </tr>
                 <tr>
                   <th colspan="7" class="text-right">Bayar / DP:</th>
-                  <th colspan="2"><input type="text" placeholder="Bayar" class="form-control" name="" id=""></th>
+                  <th colspan="2"><input type="text" placeholder="Bayar" class="form-control" name="bayar" id=""></th>
                 </tr>
-                @endforeach
+                
                 <tr>
                   <th colspan="7" class="text-right">&nbsp;</th>
                   <th colspan="2"><button class="btn btn-warning"> <b>ADD Payment</b> </button></th>
@@ -133,7 +142,7 @@
               </tfoot>
               
           </table>
-          
+        </form>
         </div>
         <!-- /.box-body -->
         <!-- Tambahan -->
@@ -170,7 +179,7 @@
                   <td>Qty</td>
                   <td><input type="number" name="qty" required class="form-control"></td>
                 </tr>
-                <tr>
+                {{-- <tr>
                   <td>Member:</td>
                   <td>
                     <select name="member_id" class="js-example-responsive form-control select2">
@@ -180,7 +189,7 @@
                       @endforeach
                     </select>
                   </td>
-                </tr>
+                </tr> --}}
                 <tr>
                   <td colspan="2" class="text-right"><button type="submit" class="btn btn-success"><span class="fa fa-flask"></span> Add</button></td>
                 </tr>
